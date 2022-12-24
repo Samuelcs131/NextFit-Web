@@ -1,11 +1,11 @@
 import { boot } from 'quasar/wrappers'
 import { createI18n } from 'vue-i18n'
-
 import messages from 'src/i18n'
+import { useSettingsGlobalStore } from 'src/stores/SettingsGlobalStore'
+import { storeToRefs } from 'pinia'
 
-export type MessageLanguages = keyof typeof messages;
-// Type-define 'en-US' as the master schema for the resource
-export type MessageSchema = typeof messages['pt-BR'];
+export type MessageLanguages = keyof typeof messages
+export type MessageSchema = typeof messages['pt-BR']
 
 // See https://vue-i18n.intlify.dev/guide/advanced/typescript.html#global-resource-schema-type-definition
 /* eslint-disable @typescript-eslint/no-empty-interface */
@@ -21,9 +21,12 @@ declare module 'vue-i18n' {
 }
 /* eslint-enable @typescript-eslint/no-empty-interface */
 
+const settingsGlobalStore = useSettingsGlobalStore()
+const { language } = storeToRefs(settingsGlobalStore)
+
 export default boot(({ app }) => {
   const i18n = createI18n({
-    locale: 'pt-BR',
+    locale: language.value,
     legacy: false,
     messages
   })
@@ -31,3 +34,11 @@ export default boot(({ app }) => {
   // Set i18n instance on app
   app.use(i18n)
 })
+
+const i18n = createI18n({
+  locale: language.value,
+  globalInjection: true,
+  messages
+})
+
+export const useI18n = () => i18n.global

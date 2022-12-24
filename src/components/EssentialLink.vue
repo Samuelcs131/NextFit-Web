@@ -1,13 +1,6 @@
 <template>
-  <q-item
-    clickable
-    tag="a"
-    :to="link"
-  >
-    <q-item-section
-      v-if="icon"
-      avatar
-    >
+  <q-item v-ripple clickable tag="a" :to="link" @click="navegation(title)">
+    <q-item-section v-if="icon" avatar>
       <q-icon :name="icon" />
     </q-item-section>
 
@@ -18,6 +11,8 @@
 </template>
 
 <script setup lang="ts">
+import useUserLayout from 'src/layouts/user/composables/useUserLayout'
+
 export interface EssentialLinkProps {
   title: string;
   link?: string;
@@ -27,4 +22,10 @@ withDefaults(defineProps<EssentialLinkProps>(), {
   link: '#',
   icon: ''
 })
+
+function navegation (title: string) {
+  userLayoutState.value.toolbarTitle = title
+}
+
+const { userLayoutState } = useUserLayout()
 </script>

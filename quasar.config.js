@@ -10,8 +10,9 @@
 
 const { configure } = require('quasar/wrappers')
 const path = require('path')
+require('dotenv').config()
 
-module.exports = configure(function (/* ctx */) {
+module.exports = configure(function (ctx) {
   return {
     eslint: {
       // fix: true,
@@ -69,7 +70,8 @@ module.exports = configure(function (/* ctx */) {
       // publicPath: '/',
       // analyze: true,
       env: {
-        API: process.env.API_URL
+        API: ctx ? process.env.API_URL : process.env.API_URL,
+        USER_TOKEN_ESPIRY_TIME: process.env.USER_TOKEN_ESPIRY_TIME
       },
       // rawDefine: {}
       // ignorePublicFolder: true,
@@ -112,7 +114,7 @@ module.exports = configure(function (/* ctx */) {
       // directives: [],
 
       // Quasar plugins
-      plugins: []
+      plugins: ['Notify', 'Cookies']
     },
 
     // animations: 'all', // --- includes all animations
