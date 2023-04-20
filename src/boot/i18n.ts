@@ -1,8 +1,9 @@
 import { boot } from 'quasar/wrappers'
 import { createI18n } from 'vue-i18n'
 import messages from 'src/i18n'
-import { useSettingsGlobalStore } from 'src/stores/SettingsGlobalStore'
-import { storeToRefs } from 'pinia'
+import { useGlobalSettings } from 'src/stores/global-settings/globalSettings.store'
+
+const { storage } = useGlobalSettings()
 
 export type MessageLanguages = keyof typeof messages
 export type MessageSchema = typeof messages['pt-BR']
@@ -21,14 +22,11 @@ declare module 'vue-i18n' {
 }
 /* eslint-enable @typescript-eslint/no-empty-interface */
 
-const settingsGlobalStore = useSettingsGlobalStore()
-const { language } = storeToRefs(settingsGlobalStore)
-
 export default boot(({ app }) => {
   const i18n = createI18n({
-    locale: language.value,
+    locale: storage.language,
     legacy: false,
-    messages
+    messages,
   })
 
   // Set i18n instance on app
@@ -36,9 +34,9 @@ export default boot(({ app }) => {
 })
 
 const i18n = createI18n({
-  locale: language.value,
+  locale: storage.language,
   globalInjection: true,
-  messages
+  messages,
 })
 
 export const useI18n = () => i18n.global

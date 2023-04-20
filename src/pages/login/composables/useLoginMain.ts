@@ -1,22 +1,25 @@
-import useAuthUser from 'src/composables/useAuthUser'
-import { ref } from 'vue'
+import { LocalStorage } from 'quasar'
+import {useUserAuth} from 'src/composables/useUserAuth'
+import { computed, ref } from 'vue'
 
 interface IState {
   email: string | null
   password: string | null
   visibilityPwd: boolean,
-  btnLogInLoading: boolean
+  btnLogInLoading: boolean,
+}
+
+const initializeState: IState = {
+  email: 'demo@nextfit.com',
+  password: '12345678',
+  visibilityPwd: true,
+  btnLogInLoading: false,
 }
 
 export default function useLoginMain () {
-  const { login } = useAuthUser()
+  const { login } = useUserAuth()
 
-  const state = ref<IState>({
-    email: 'demo@demo.com',
-    password: '12345678',
-    visibilityPwd: true,
-    btnLogInLoading: false
-  })
+  const state = ref(initializeState)
 
   async function onLogin () {
     if (!state.value.email || !state.value.password) return
@@ -27,6 +30,6 @@ export default function useLoginMain () {
 
   return {
     state,
-    onLogin
+    onLogin,
   }
 }

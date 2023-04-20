@@ -8,6 +8,14 @@ export default {
     password: 'Password',
     forgotPassword: 'Forgot password?'
   },
+  common: {
+    dashboard: 'Dashboard',
+    activities: 'Activities',
+    profile: 'Profile',
+    settings: 'Settings',
+    colors: 'Colors',
+    designSystem: 'Design system'
+  },
   formValidation: {
     email: 'Invalid email format',
     spacedPassword: 'Cannot contain spaces',
@@ -39,7 +47,15 @@ export default {
     settings: 'Settings',
     profile: 'Profile',
     colors: 'Colors',
-    language: 'Language'
+    language: 'Language',
+    dark: 'Dark',
+    light: 'Light',
+    info: 'Info',
+    success: 'Success',
+    warning: 'Warning',
+    error: 'Error',
+    maximized: 'Maximized',
+    limited: 'Limited',
   },
   colors: {
     blue: 'Blue',

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios'
 import { api } from 'src/boot/axios'
-import { IUser } from 'src/models/user/IUser.mode'
+import { IUser } from 'src/entities/user/IUser.model'
 import { BaseService } from 'src/service/base.service'
 import { endpoint } from 'src/service/endpoint/index.const'
 import { IApiResponse } from 'src/types/api/IApiResponse.type'

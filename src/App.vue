@@ -3,9 +3,16 @@
 </template>
 
 <script setup lang="ts">
+import { metaData } from './constants/meta-data/metaData.const'
+import { useMeta } from 'quasar'
+import { useGlobalSettings } from 'stores/global-settings/globalSettings.store'
+import { useSettingMeta } from './composables/useMetaHtml'
 
-import { useSettingsGlobalStore } from './stores/SettingsGlobalStore'
+const { loadGlobalSettings } = useGlobalSettings()
 
-const { initializationSettingsGlobal } = useSettingsGlobalStore()
-initializationSettingsGlobal()
-</script>
+useMeta(metaData)
+useSettingMeta()
+loadGlobalSettings()
+
+
+</script> 

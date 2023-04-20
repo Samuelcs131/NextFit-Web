@@ -1,26 +1,96 @@
-// Quasar SCSS (& Sass) Variables
-// --------------------------------------------------
-// To customize the look and feel of this app, you can override
-// the Sass/SCSS variables found in Quasar's source Sass/SCSS files.
+// DEFAULT
+$dark-page: var(--q-default);
+$dark-page-rgb: var(--q-default-rgb);
+$dark-page-opacity-70: rgba($dark-page-rgb, 0.7);
 
-// Check documentation for full list of Quasar variables
+// PAPER
+$dark: var(--q-paper);
+$paper-shadow: var(--q-paper-shadow);
 
-// Your own variables (that are declared here) and Quasar's own
-// ones will be available out of the box in your .vue/.scss/.sass files
+// GREY
+$grey-100: #f9fafb;
+$grey-200: #f4f6f8;
+$grey-300: #dfe3e8;
+$grey-400: #c4cdd5;
+$grey-500: #919eab;
+$grey-600: #637381;
+$grey-700: #454f5b;
+$grey-800: #212b36;
+$grey-900: #161c24;
 
-// It's highly recommended to change the default colors
-// to match your app's branding.
-// Tip: Use the "Theme Builder" on Quasar's documentation website.
+// PRIMARY
+$primary: var(--q-primary);
+$primary-light: var(--q-primary-light);
+$primary-lighter: var(--q-primary-lighter);
+$primary-dark: var(--q-primary-dark);
+$primary-darker: var(--q-primary-darker);
+$primary-constrast-text: var(--q-primary-constrast-text);
+$primary-rgb: var(--q-primary-rgb);
+$primary-opacity-15: rgba($primary-rgb, 0.15);
+$primary-brightness: 0px 8px 16px rgba(var(--q-primary-brightness), 0.24);
 
-$primary   : #FFFFFF;
-$secondary : #009FFF;
-$accent    : #FF6A00;
-$accent-1  : #F5315D;
+// SECONDARY
+$secondary: #c4cdd5;
+$secondary-constrast-text: $grey-900;
+$secondary-brightness: 0px 8px 16px rgba($secondary, 0.24);
 
-$dark      : #1D1D1D;
-$dark-page : #121212;
+// ACCENT
+$accent: #919eab;
+$accent-constrast-text: $grey-900;
+$accent-brightness: 0px 8px 16px rgba($accent, 0.24);
 
-$positive  : #21BA45;
-$negative  : #C10015;
-$info      : #31CCEC;
-$warning   : #F2C037;
+// POSITIVE
+$positive: #36B37E;
+$positive-constrast-text: #fff;
+$positive-brightness: 0px 8px 16px rgba(31, 221, 63, 0.24);
+$positive-lighter: #D8FBDE;
+$positive-light: #86E8AB;
+$positive-dark: #1B806A;
+$positive-darker: #0A5554;
+
+// NEGATIVE
+$negative: #ff5630;
+$negative-constrast-text: #fff;
+$negative-brightness: 0px 8px 16px rgba(255, 86, 48, 0.24);
+$negative-lighter: #ffe9d5;
+$negative-light: #ffac82;
+$negative-dark: #b71d18;
+$negative-darker: #7a0916;
+
+// INFO
+$info:#00B8D9;
+$info-constrast-text:#fff;
+$info-brightness: 0px 8px 16px rgba(0, 184, 217, 0.24);
+$info-lighter: #CAFDF5;
+$info-light: #61F3F3;
+$info-dark: #006C9C;
+$info-darker: #003768;
+
+// WARNING
+$warning: #FFAB00;
+$warning-constrast-text: $grey-900;
+$warning-brightness: 0px 8px 16px rgba(255, 171, 0, 0.24);
+$warning-lighter: #FFF5CC;
+$warning-light: #FFD666;
+$warning-dark: #B76E00;
+$warning-darker: #7A4100;
+
+// SHADOW
+$background-page-shadow: var(--q-background-page-shadow);
+
+// CONTAINER
+$stretch-max-width: var(--q-stretch-max-width);
+
+// TEXT
+$text-primary: var(--q-text-primary);
+$text-secondary: var(--q-text-secondary);
+$text-disabled: var(--q-text-disabled);
+
+// BORDER
+$card-border: 16px;
+
+// SEPARATOR
+$separator-color: var(--q-divider);
+$separator-dark-color: var(--q-divider);
+
+

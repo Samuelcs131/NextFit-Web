@@ -1,0 +1,19 @@
+.border-dashed {
+  border: 1px dashed $text-disabled;
+}
+
+.circle-border {
+  border-radius: 50%;
+}
+
+.border-radius-lg {
+  border-radius: 32px;
+}
+
+.border-radius-md {
+  border-radius: 16px;
+}
+
+.border-radius-sm {
+  border-radius: 8px;
+}

@@ -8,6 +8,14 @@ export default {
     password: 'Senha',
     forgotPassword: 'Esqueceu a senha?'
   },
+  common: {
+    dashboard: 'Dashboard',
+    activities: 'Atividades',
+    profile: 'Perfil',
+    settings: 'Configurações',
+    colors: 'Cores',
+    designSystem: 'Sistema de design'
+  },
   formValidation: {
     email: 'Formato de email inválido',
     spacedPassword: 'Não pode conter espaços',
@@ -39,7 +47,15 @@ export default {
     settings: 'Definições',
     profile: 'Perfil',
     colors: 'Cores',
-    language: 'Linguagem'
+    language: 'Linguagem',
+    dark: 'Escuro',
+    light: 'Claro',
+    info: 'Informação',
+    success: 'Sucesso',
+    warning: 'Alerta',
+    error: 'Erro',
+    maximized: 'Maximizado',
+    limited: 'Limitado',
   },
   colors: {
     blue: 'Azul',

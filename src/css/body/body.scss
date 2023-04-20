@@ -1,0 +1,22 @@
+body{
+  &.body--light {
+    color: $text-primary !important;
+    background: $dark-page !important;
+  }
+
+  &.body--dark {
+    color: $text-primary !important;
+    background: $dark-page !important;
+  }
+
+}
+
+/* .q-list--dark, .q-item--dark {
+  color: $text-primary;
+} */
+
+.q-dark {
+  color: $text-primary !important;
+  background: $dark !important;
+}
+

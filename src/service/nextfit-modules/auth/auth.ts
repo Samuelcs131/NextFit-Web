@@ -3,7 +3,7 @@ import { BaseService } from 'src/service/base.service'
 import { IApiResponse } from 'src/types/api/IApiResponse.type'
 import { endpoint } from 'src/service/endpoint/index.const'
 import { AxiosError } from 'axios'
-import { IUser } from 'src/models/user/IUser.mode'
+import { IUser } from 'src/entities/user/IUser.model'
 
 class AuthService extends BaseService {
   async auth (email: string, password: string): Promise<IApiResponse<IUser>> {

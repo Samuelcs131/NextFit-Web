@@ -1,24 +1,16 @@
+import { appRouter } from 'src/constants/routes/appRouter.const'
+import { indexRouter } from 'src/constants/routes/indexRouter.const'
+import { loginRouter } from 'src/constants/routes/loginRouter.const'
+import { notFoundRouter } from 'src/constants/routes/notFoundRouter.const'
+import { registerRouter } from 'src/constants/routes/registerRouter.const'
 import { RouteRecordRaw } from 'vue-router'
 
 const routes: RouteRecordRaw[] = [
-  {
-    path: '/app',
-    component: () => import('src/layouts/user/UserLayout.vue'),
-    children: [
-      { path: 'dashboard', component: () => import('pages/user/dashboard/DashboardMain.vue') },
-      { path: 'settings', component: () => import('pages/user/settings/SettingsUser.vue') }
-    ]
-  },
-  {
-    path: '/login',
-    component: () => import('pages/login/LoginMain.vue')
-  },
-
-  // NOT FOUND
-  {
-    path: '/:catchAll(.*)*',
-    component: () => import('pages/ErrorNotFound.vue')
-  }
+  indexRouter,
+  appRouter,
+  loginRouter,
+  registerRouter,
+  notFoundRouter
 ]
 
 export default routes

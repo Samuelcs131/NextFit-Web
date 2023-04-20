@@ -1,26 +1,22 @@
-import { useI18n } from 'src/boot/i18n'
-
-const { t } = useI18n()
-
 export const optionsMenu = [
   {
-    title: t('ui.dashboard'),
+    title: 'dashboard',
     icon: 'bar_chart',
     link: '/app/dashboard'
   },
   {
-    title: t('ui.activities'),
+    title: 'activities',
     icon: 'bolt',
-    link: '/app/ativities'
+    link: '/app/activities'
   },
   {
-    title: t('ui.profile'),
+    title: 'profile',
     icon: 'person',
     link: '/app/profile'
   },
   {
-    title: t('ui.settings'),
+    title: 'settings',
     icon: 'settings',
     link: '/app/settings'
-  }
+  },
 ]

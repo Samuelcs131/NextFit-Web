@@ -1,7 +1,34 @@
-// COLORS
-@import '../color/colors.scss';
-@import '../color/field.scss';
-@import '../color/drawer.scss';
+// BRIGHTNESS
+@import '../brightness/brightness.scss';
+
+// COLOR
+@import '../color/color.scss';
+@import '../color/grey.scss';
+@import '../color/background.scss';
+
+// HEADER
+@import '../header/header.scss';
+
+// BODY
+@import '../body/body.scss';
+
+// SCROLL
+@import '../scroll/scroll.scss';
+
+// SPACE
+@import '../space/gap.scss';
+
+// SHADOW
+@import '../shadow/shadow.scss';
+
+// BORDER
+@import '../border/border.scss';
+
+// TEXT
+@import '../text/text.scss';
+
+// GAP
+@import '../space/gap.scss';
 
 // CONTAINER
 @import '../container/container.scss';

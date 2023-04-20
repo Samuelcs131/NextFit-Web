@@ -1,38 +1,41 @@
 import { Notify } from 'quasar'
+import { QPosition } from 'src/enums/quasar/position.enum'
+import { QType } from 'src/enums/quasar/type.enum'
 
-export default function useNotify () {
-  function feedback (
-    opt: {
-      type: 'positive' | 'negative' | 'warning' | 'info' | 'ongoing',
-      position: 'top-left' | 'top-right' | 'top' | 'bottom' | 'center',
-      message: string,
-      caption?: string
-      progress?: boolean,
-      timeout?: 5000,
-    }
-  ) {
+export function useNotify() {
+  function feedback(opt: {
+    type: `${QType}`
+    position: `${QPosition}`
+    title: string
+    description?: string
+    progress?: boolean
+    timeout?: number
+  }) {
     opt.progress = true
 
     Notify.create({
-      timeout: opt.timeout,
-      progress: opt.progress,
-      message: opt.message,
-      caption: opt.caption,
+      timeout: opt.timeout || 5000,
+      progress: opt.progress || true ,
+      message: opt.title,
+      caption: opt.description,
       position: opt.position,
+      color: undefined,
+      classes: 'bg-default text-body-primary',
       type: opt.type,
+      iconColor: opt.type,
       actions: [
         {
           icon: 'close',
-          color: 'white',
+          class: 'text-body-primary',
           size: 'sm',
           flat: true,
-          round: true
-        }
-      ]
+          round: true,
+        },
+      ],
     })
   }
 
   return {
-    feedback
+    feedback,
   }
 }

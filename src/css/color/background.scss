@@ -1,0 +1,20 @@
+.bg-default {
+  background-color: $dark;
+}
+
+.bg-primary{
+  color: $primary-constrast-text !important;
+}
+
+.bg-secondary{
+  color: $secondary-constrast-text !important;
+}
+
+.bg-accent{
+  color: $accent-constrast-text !important;
+}
+
+
+.q-notification__progress{
+  background: $grey-500 !important;
+}
