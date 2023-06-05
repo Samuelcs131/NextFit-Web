@@ -10,19 +10,21 @@
     <template #control>
       <template v-if="useChips">
         <q-chip
-          v-for="({ label, id }, idx) in state.tree[state.treeId].selectedNodes"
-          :key="idx"
+          v-for="{ label, id } in labelsChip(maxItemsDisplayed).labels"
+          :key="id"
           :label="label"
           @remove="() => removeItem(id)"
           removable
           size=".8rem"
           dense
         />
+        <span>{{ labelsChip(maxItemsDisplayed).plus }}</span>
       </template>
-      <span v-else> {{ getSelectedLabels(state.treeId) }}</span>
+      <span v-else> {{ labelsText(maxItemsDisplayed) }}</span>
       <input
+        v-if="useInput"
         type="text"
-        class="q-field__input q-placeholder col"
+        class="q-ml-xs q-field__input q-placeholder col"
         v-model="state.inputValue"
         @click="state.isPopupShown = true"
         @input="expandOptions"
@@ -33,7 +35,7 @@
         <q-icon
           v-show="isSelected()"
           name="cancel"
-          @click="handleClear(state.treeId)"
+          @click="handleClear"
           :size="dense ? '1rem' : '1.5rem'"
           class="cursor-pointer"
         />
@@ -43,7 +45,13 @@
         />
       </div>
     </template>
-    <q-popup-proxy no-parent-event no-focus fit v-model="state.isPopupShown">
+    <q-popup-proxy
+      :style="{ maxHeight: `${maxHeightMenu}px` }"
+      no-parent-event
+      no-focus
+      fit
+      v-model="state.isPopupShown"
+    >
       <q-tree
         :dense="optionsDense"
         ref="treeView"
@@ -52,11 +60,12 @@
         label-key="label"
         :filter="state.inputValue || ''"
         :tick-strategy="tickStrategy || 'leaf'"
-        v-model:ticked="state.tree[state.treeId].ticked"
+        v-model:ticked="state.tree.ticked"
         @update:ticked="handleSelect"
         :filter-method="filterTreeSelect"
         class="q-pa-xs"
         no-results-label="Nenhum resultado encontrado"
+        :accordion="accordion"
       />
     </q-popup-proxy>
   </q-field>
@@ -65,11 +74,11 @@
 <script setup lang="ts">
 import { onBeforeMount } from 'vue'
 import { useTreeSelect } from './composables/useTreeSelect'
-import { ITreeNode } from './types/ITreeNode.type'
-import { QFieldProps } from 'quasar'
+import { ITreeSelect } from './types/ITreeSelect.type'
+import { QFieldProps, QTree } from 'quasar'
 
 interface IProp extends QFieldProps {
-  options: ITreeNode[]
+  options: ITreeSelect[]
   tickStrategy?: 'none' | 'strict' | 'leaf' | 'leaf-filtered'
   dense?: boolean
   optionsDense?: boolean
@@ -77,6 +86,10 @@ interface IProp extends QFieldProps {
   loading?: boolean
   disable?: boolean
   modelValue: string[] | null
+  useInput?: boolean
+  maxItemsDisplayed?: number
+  maxHeightMenu?: number
+  accordion?: boolean
 }
 
 const props = defineProps<IProp>()
@@ -84,44 +97,37 @@ const props = defineProps<IProp>()
 const {
   state,
   treeView,
+  labelsText,
+  labelsChip,
   isSelected,
-  createTree,
   clearField,
   expandOptions,
   getTickedNodes,
-  setValueDefault,
+  setValueInitial,
   filterTreeSelect,
   handleRemoveItem,
-  getSelectedLabels,
 } = useTreeSelect()
 
 onBeforeMount(() => {
   const { options, modelValue } = props
-
-  createTree(state.value.treeId, options)
-  if (modelValue) setValueDefault(modelValue)
+  setValueInitial(modelValue, options)
 })
 
 const emit = defineEmits(['update:modelValue'])
 
 function handleSelect(ids: readonly string[]) {
-  getTickedNodes(state.value.treeId)
+  getTickedNodes()
   emit('update:modelValue', ids)
 }
 
-function handleClear(id: string) {
-  clearField(id)
+function handleClear() {
+  clearField()
   emit('update:modelValue', [])
 }
 
 function removeItem(id: string) {
   handleRemoveItem(id)
-
-  const ids = state.value.tree[state.value.treeId].selectedNodes.map(
-    (item) => item.id
-  )
-
+  const ids = state.value.tree.selected.map(({ id }) => id)
   emit('update:modelValue', ids)
 }
-
 </script>

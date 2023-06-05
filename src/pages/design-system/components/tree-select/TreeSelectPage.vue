@@ -1,73 +1,102 @@
 <template>
   <page-layout>
-    {{ 'Value: ' + valor }}
-    <tree-select v-model="valor" :options="options" label="Tree select" use-chips />
+    <div class="border-dashed q-pa-md border-radius-sm">
+      <h1 class="text-h6 q-mt-none">Tree select</h1>
+
+      <div class="q-mb-md">
+        <q-toggle v-model="treeValue.dense" label="Dense" />
+        <q-toggle v-model="treeValue.optionsDense" label="Options dense" />
+        <q-toggle v-model="treeValue.useChips" label="Use chips" />
+        <q-toggle v-model="treeValue.useInput" label="Use input" />
+
+        <span class="q-mx-sm">
+          <span class="q-mx-sm">
+            <q-button
+              visual="default"
+              icon="add"
+              round
+              size="xs"
+              @click="
+                treeValue.maxItemsDisplayed = treeValue.maxItemsDisplayed + 1
+              "
+            />
+            <span class="q-mx-sm">{{ treeValue.maxItemsDisplayed }}</span>
+            <q-button
+              visual="default"
+              icon="remove"
+              round
+              size="xs"
+              @click="
+                treeValue.maxItemsDisplayed = treeValue.maxItemsDisplayed - 1
+              "
+            />
+          </span>
+          Max items displayed
+        </span>
+      </div>
+
+      <span class="q-py-sm block">Value: {{ treeValue.value }}</span>
+      <tree-select
+        v-model="treeValue.value"
+        :options="options"
+        label="Tree select"
+        :use-chips="treeValue.useChips"
+        :dense="treeValue.dense"
+        :options-dense="treeValue.optionsDense"
+        :useInput="treeValue.useInput"
+        :maxItemsDisplayed="treeValue.maxItemsDisplayed"
+      />
+    </div>
 
     <q-separator class="q-my-xl" />
 
-    {{ 'Value two: ' + valorTwo }}
-    <tree-select v-model="valorTwo" :options="options" label="Tree select" use-chips />
+    <div class="border-dashed q-pa-md border-radius-sm">
+      <h1 class="text-h6 q-mt-none">Tree select only</h1>
+
+      <div class="q-mb-md">
+        <q-toggle v-model="treeOnlyValue.dense" label="Dense" />
+        <q-toggle v-model="treeOnlyValue.optionsDense" label="Options dense" />
+        <q-toggle v-model="treeOnlyValue.useInput" label="Use input" />
+      </div>
+
+      <span class="q-py-sm block">Value: {{ treeOnlyValue.value }}</span>
+      <tree-select-only
+        v-model="treeOnlyValue.value"
+        :options="options"
+        label="Tree select only"
+        :dense="treeOnlyValue.dense"
+        :options-dense="treeOnlyValue.optionsDense"
+        :useInput="treeOnlyValue.useInput"
+        :max-height-menu="250"
+      />
+    </div>
   </page-layout>
 </template>
 <script setup lang="ts">
+import QButton from 'src/components/user-interface/button/QButton.vue'
 import TreeSelect from 'src/components/user-interface/tree-select/TreeSelect.vue'
 import PageLayout from 'src/layouts/user/components/page-layout/PageLayout.vue'
 import { ref } from 'vue'
+import { treeOptions } from './constants/treeSelectOptions'
+import TreeSelectOnly from 'src/components/user-interface/tree-select-only/TreeSelectOnly.vue'
 
-const valor = ref<string[] | null>(['2', '3'])
+const treeValue = ref({
+  value: ['2', '3'],
+  dense: false,
+  optionsDense: false,
+  useChips: false,
+  useInput: false,
+  maxItemsDisplayed: 0,
+})
 
-const valorTwo = ref<string[] | null>(['5'])
+const treeOnlyValue = ref({
+  value: '2',
+  dense: false,
+  optionsDense: false,
+  useChips: false,
+  useInput: false,
+  selectOnly: false,
+})
 
-const options = ref([
-  {
-    id: '1',
-    label: 'Opt 1',
-    children: [
-      { id: '2', label: 'sub 1' },
-      { id: '3', label: 'sub 2' },
-      {
-        id: '4',
-        label: 'sub 3',
-        children: [
-          { id: '5', label: 'tri 1' },
-          { id: '6', label: 'tri 2' },
-          {
-            id: '7',
-            label: 'tri 3',
-            children: [
-              { id: '8', label: 'quad 1' },
-              { id: '9', label: 'quad 2' },
-              { id: '10', label: 'quad 3' },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  {
-    id: '11',
-    label: 'Opt 2',
-    children: [
-      { id: '12', label: 'sub 10' },
-      { id: '13', label: 'sub 20' },
-      {
-        id: '14',
-        label: 'sub 30',
-        children: [
-          { id: '15', label: 'tri 10' },
-          { id: '16', label: 'tri 20' },
-          {
-            id: '17',
-            label: 'tri 30',
-            children: [
-              { id: '18', label: 'quad 10' },
-              { id: '19', label: 'quad 20' },
-              { id: '110', label: 'quad 30' },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-])
+const options = ref(treeOptions)
 </script>

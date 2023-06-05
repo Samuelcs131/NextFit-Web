@@ -1,28 +1,28 @@
 import { QTree } from 'quasar'
 import { nextTick, ref } from 'vue'
-import { ITreeNode } from '../types/ITreeNode.type'
+import { ITreeSelect } from '../types/ITreeSelect.type'
 import { slugify } from 'src/utils/slugfy.utils'
 import { filterObjectsByPropertyValueRecursive } from 'src/utils/array/filterObjectsByPropertyValueRecursive.utils'
 
 interface ITree {
-  [key: string]: {
-    selectedNodes: ITreeNode[]
-    ticked: string[]
-    treeNodes: ITreeNode[]
-  }
+  selected: ITreeSelect[]
+  ticked: string[]
+  options: ITreeSelect[]
 }
 
 interface IState {
   tree: ITree
-  treeId: string
   isPopupShown: boolean
   inputValue: string | null
 }
 
 export function useTreeSelect() {
   const initializeState: IState = {
-    tree: {},
-    treeId: crypto.randomUUID(),
+    tree: {
+      selected: [],
+      ticked: [],
+      options: [],
+    },
     isPopupShown: false,
     inputValue: null,
   }
@@ -30,59 +30,62 @@ export function useTreeSelect() {
   const state = ref(initializeState)
   const treeView = ref<QTree | null>(null)
 
-  function createTree(treeId: string, nodes: ITreeNode[]) {
-    state.value.tree[treeId] = {
-      selectedNodes: [],
-      ticked: [],
-      treeNodes: nodes,
-    }
-  }
-
-  function getTickedNodes(treeId: string) {
+  function getTickedNodes() {
     nextTick(() => {
-      state.value.tree[treeId].selectedNodes =
-        treeView.value?.getTickedNodes() as ITreeNode[]
+      state.value.tree.selected =
+        treeView.value?.getTickedNodes() as ITreeSelect[]
     })
   }
 
-  function getSelectedLabels(treeId: string) {
-    const labels = state.value.tree[treeId].selectedNodes.map((node) => {
+  function labelsText(maxItems?: number) {
+    const labels = state.value.tree.selected.map((node) => {
       return node.label
     })
 
-    if (labels.length > 3) {
-      const [label1, label2, label3] = labels
-
-      return `${[label1, label2, label3].join(', ')} +${labels.length - 3}`
+    if (maxItems && maxItems > 0) {
+      const plus = labels.length - maxItems
+      return `${labels.slice(0, maxItems).join(', ')} ${
+        plus > 0 ? `( +${plus} )` : ''
+      }`
     }
 
-    return labels.join(',')
+    return labels.join(', ')
+  }
+
+  function labelsChip(maxItems?: number) {
+    const labels = state.value.tree.selected
+
+    if (maxItems && maxItems > 0) {
+      const plus = labels.length - maxItems
+
+      return {
+        labels: labels.slice(0, maxItems),
+        plus: plus > 0 ? `( +${plus} )` : '',
+      }
+    }
+
+    return { labels, plus: '' }
   }
 
   function handleRemoveItem(id: string) {
-    const { treeId } = state.value
-    state.value.tree[treeId].selectedNodes = state.value.tree[
-      treeId
-    ].selectedNodes.filter((item) => {
+    state.value.tree.selected = state.value.tree.selected.filter((item) => {
       return item.id !== id
     })
-    state.value.tree[treeId].ticked = state.value.tree[treeId].ticked.filter(
-      (itemId) => {
-        return itemId !== id
-      }
-    )
+    state.value.tree.ticked = state.value.tree.ticked.filter((itemId) => {
+      return itemId !== id
+    })
   }
 
-  function clearField(treeId: string) {
-    state.value.tree[treeId].selectedNodes = []
-    state.value.tree[treeId].ticked = []
+  function clearField() {
+    state.value.tree.selected = []
+    state.value.tree.ticked = []
   }
 
   function isSelected() {
-    return state.value.tree[state.value.treeId].selectedNodes.length > 0
+    return state.value.tree.selected.length > 0
   }
 
-  function filterTreeSelect(node: ITreeNode, filter: string) {
+  function filterTreeSelect(node: ITreeSelect, filter: string) {
     const filt = slugify(filter)
 
     return slugify(node.label).indexOf(filt) > -1
@@ -96,9 +99,11 @@ export function useTreeSelect() {
     }
   }
 
-  function setValueDefault(value: string[]) {
-    const options = state.value.tree[state.value.treeId].treeNodes
+  function setValueInitial(value: string[] | null, options: ITreeSelect[]) {
+    state.value.tree.options = options
 
+    if (!value) return
+    
     const selecteds = filterObjectsByPropertyValueRecursive(
       options,
       'id',
@@ -106,21 +111,21 @@ export function useTreeSelect() {
       value
     )
 
-    state.value.tree[state.value.treeId].selectedNodes = selecteds
-    state.value.tree[state.value.treeId].ticked = selecteds.map((i) => i.id)
+    state.value.tree.selected = selecteds
+    state.value.tree.ticked = selecteds.map((i) => i.id)
   }
 
   return {
     state,
     treeView,
     isSelected,
-    createTree,
     clearField,
     expandOptions,
     getTickedNodes,
-    setValueDefault,
+    setValueInitial,
     filterTreeSelect,
     handleRemoveItem,
-    getSelectedLabels,
+    labelsText,
+    labelsChip,
   }
 }
