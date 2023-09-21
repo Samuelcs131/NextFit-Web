@@ -20,7 +20,7 @@ export function useNotify() {
       caption: opt.description,
       position: opt.position,
       color: undefined,
-      classes: 'bg-default text-body-primary',
+      classes: 'bg-theme-paper text-body-primary',
       type: opt.type,
       iconColor: opt.type,
       actions: [

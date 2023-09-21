@@ -1,4 +1,4 @@
-import { AxiosError } from 'axios'
+/* import { AxiosError } from 'axios'
 import { api } from 'src/boot/axios'
 import { IUser } from 'src/entities/user/IUser.model'
 import { BaseService } from 'src/service/base.service'
@@ -21,3 +21,4 @@ class UserService extends BaseService {
 }
 
 export default new UserService()
+ */

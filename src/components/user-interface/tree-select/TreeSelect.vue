@@ -17,6 +17,7 @@
           removable
           size=".8rem"
           dense
+          color="default"
         />
         <span>{{ labelsChip(maxItemsDisplayed).plus }}</span>
       </template>

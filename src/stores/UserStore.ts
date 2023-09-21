@@ -1,15 +1,19 @@
 import { defineStore } from 'pinia'
-import { IUser } from 'src/entities/user/IUser.model'
-import { computed, ref } from 'vue'
+import { ref } from 'vue'
+import { User } from 'src/domain/application/entities/user/User.entity'
+
 
 export const useUserStore = defineStore('user', () => {
-  const state = ref(null as IUser | null)
+  const userState = ref(null as User | null)
 
-  const user = computed(()=> state.value)
-
-  function resetUser(){
-    state.value = null
+  function resetUser() {
+    userState.value = null
   }
 
-  return { state, resetUser, user }
+  function setUser(user: User) {
+    userState.value = user
+  }
+
+  return { userState, resetUser, setUser }
 })
+

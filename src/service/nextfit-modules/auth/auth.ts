@@ -1,4 +1,4 @@
-import { api } from 'src/boot/axios'
+/* import { api } from 'src/boot/axios'
 import { BaseService } from 'src/service/base.service'
 import { IApiResponse } from 'src/types/api/IApiResponse.type'
 import { endpoint } from 'src/service/endpoint/index.const'
@@ -17,3 +17,4 @@ class AuthService extends BaseService {
 }
 
 export default new AuthService()
+ */

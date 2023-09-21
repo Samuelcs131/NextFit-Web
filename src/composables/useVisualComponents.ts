@@ -1,4 +1,3 @@
-import { ThemeTemplates } from 'src/theme/enums/themeTemplates.enum'
 import { ref } from 'vue'
 
 const initializeVisualComponent = {
@@ -45,11 +44,5 @@ const initializeVisualComponent = {
 
 export function useVisualComponents() {
   const visualComponent = ref(initializeVisualComponent)
-
-  function setVisualInput(theme: ThemeTemplates) {
-    /* visualComponent.value.input.dark =
-      !(theme === ThemeTemplates.light) */
-  }
-
-  return { visualComponent, setVisualInput }
+  return { visualComponent }
 }

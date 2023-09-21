@@ -1,5 +1,6 @@
-export enum avatar {
-  luca,
+/* eslint-disable no-unused-vars */
+export enum Avatar {
+  luca = 1,
   ariel,
   alison,
   jake,

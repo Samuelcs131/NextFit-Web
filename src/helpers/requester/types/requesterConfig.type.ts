@@ -1,14 +1,16 @@
-import { AxiosError } from 'axios'
+/* eslint-disable no-unused-vars */
+import { ErrorException } from 'src/domain/application/entities/error/ErrorException.entity'
 
-interface IFeedback {
-  title: string
-  message?: string
-}
-
-export interface IRequesterConfig {
-  callback: () => unknown
-  loaders?: Array<string>
-  successFeedback?: IFeedback
-  successCallback?: (response: unknown) => unknown
-  errorCallback: (error: AxiosError) => IFeedback
+export type ActionConfiguration = {
+  callback: (data?: unknown) => unknown
+  errorException?: ErrorException[]
+  loaders?: string[]
+  successMessageTitle?: string
+  successMessage?: string
+  errorMessageTitle?: string
+  errorMessage?: string
+  showAPIError?: boolean
+  messageTimeout?: number
+  successCallback?: () => unknown
+  errorCallback?: () => unknown
 }

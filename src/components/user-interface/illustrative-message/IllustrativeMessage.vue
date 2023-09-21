@@ -4,42 +4,29 @@
       class="image-ilustrative"
       :alt="message"
       :src="illustrativeMessageImage[illustration]"
-      :width="width"
+      :width="width || '120px'"
       :height="height"
     />
 
-    <span class="q-mt-lg text-subtitle1 text-grey">
+    <span class="q-mt-sm text-bold text-subtitle1 text-grey">
       {{ message }}
     </span>
   </div>
 </template>
 
 <script lang="ts" setup>
-import { PropType } from 'vue'
-import { illustrativeMessageImage } from './constants/illustrativeMessageImage';
-import { illustrativeOptions } from './enums/illustrativeOptions'
+  import { illustrativeMessageImage } from './constants/illustrativeMessageImage'
+  import { illustrativeOptions } from './enums/illustrativeOptions'
 
-defineProps({
-  message: {
-    type: String,
-    required: false,
-  },
-  opacity: {
-    type: Number,
-    required: false,
-  },
-  illustration: {
-    type: String as PropType<`${illustrativeOptions}`>,
-    required: true,
-  },
-  width: {
-    type: String,
-    default: '120px'
-  },
-  height: {
-    type: String,
+  interface IProps {
+    illustration: `${illustrativeOptions}`
+    message?: string
+    opacity?: number
+    width?: string
+    height?: string
   }
-})
+
+  defineProps<IProps>()
 </script>
 
 <style lang="scss" scoped>

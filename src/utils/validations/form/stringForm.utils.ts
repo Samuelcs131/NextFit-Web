@@ -1,3 +1,6 @@
+/**
+ * Classe de utilitário para gerar mensagens de erro relacionadas a validações de strings.
+ */
 export class StringForm {
   static lengthExact(length: number): string {
     return `Deve ter exatamente ${length} ${

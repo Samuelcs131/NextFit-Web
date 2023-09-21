@@ -1,54 +1,77 @@
-import { inject } from 'vue'
-import { useRouter } from 'vue-router'
-import { IUserAuthUseCases } from 'src/useCases/user-auth/IUserAuthUseCases.contract'
+import { useRoute, useRouter } from 'vue-router'
 import { useUserStore } from 'src/stores/UserStore'
 import { useCookies } from './useCookies'
-import { IUserUseCases } from 'src/useCases/user/IUserUseCases.contract'
-import { storeToRefs } from 'pinia'
+import container from 'src/dependency-injection/inversify.config'
+import { repositoriesIdentifier } from 'src/constants/repositories/repositoriesIdentifier.const'
+import { IUserRepository } from 'src/domain/application/repositories/user/contract/IUserRepository.contract'
+import ActionDispatcher from 'src/helpers/requester/Requester.helper'
+import { LoginError } from 'src/domain/application/repositories/user/errors/login.error'
+import { tokenAccessKey } from 'src/constants/auth-user/tokenAccessKey.const'
+import { refreshError } from 'src/domain/application/repositories/user/errors/refresh.error'
+import { fakePromise } from 'src/utils/fakePromise.util' 
 
 export function useUserAuth() {
-  const { getCookie, removeCookie } = useCookies()
+  const { setCookie, getCookie, removeCookie } = useCookies()
+  const userStore = useUserStore()
   const { push } = useRouter()
-  const { resetUser } = useUserStore()
-  const { user, state } = storeToRefs(useUserStore())
+  const route = useRoute()
 
-  const userAuthService = inject('userAuthUseCase') as IUserAuthUseCases
-  const userService = inject('userUseCase') as IUserUseCases
+  async function login(email: string, password: string, loaders?: string[]) {
+    ActionDispatcher.dispatch({
+      callback: async () => {
+        const userRepository = container.get<IUserRepository>(
+          repositoriesIdentifier.user
+        )
 
-  async function login(email: string, password: string) {
-    const user = await userAuthService.userAuth(email, password)
-
-    if (!user) return false
-
-    push({ path: '/app/dashboard' })
-    return true
+        const { user, token } = await userRepository.login(email, password)
+        userStore.setUser(user)
+        setCookie(tokenAccessKey, token, {
+          secure: true,
+          expires: process.env.ACCESS_TOKEN_DURATION,
+        })
+      },
+      successCallback() {
+        push({ path: '/app/dashboard' })
+      },
+      errorMessageTitle: 'Erro ao realizar',
+      errorMessage: 'Erro ao fazer alguma coisa',
+      errorException: [new LoginError()],
+      showAPIError: true,
+      loaders,
+    })
   }
 
-  async function isLoggedIn() {
-    const tokenAccess = getCookie('tokenAccess')
+  async function isLoggedIn(loaders?: string[]) {
+    const tokenAccess = getCookie(tokenAccessKey)
 
-    if (!tokenAccess) {
-      push({ path: '/login' })
-      resetUser()
-      return false
-    }
+    if (!tokenAccess) return logout()
 
-    state.value = await userService.getUserByToken(tokenAccess)
+    ActionDispatcher.dispatch({
+      callback: async () => {
+        const userRepository = container.get<IUserRepository>(
+          repositoriesIdentifier.user
+        )
 
-    if (!user.value) {
-      push({ path: '/login' })
-      return false
-    }
-
-    return true
+        await fakePromise(1000)
+        const user = await userRepository.refresh()
+        userStore.setUser(user)
+        if (!user) logout()
+      },
+      errorCallback() {
+        logout()
+      },
+      errorMessageTitle: 'Erro ao realizar',
+      errorMessage: 'Erro ao fazer alguma coisa',
+      errorException: [new refreshError()],
+      showAPIError: true,
+      loaders,
+    })
   }
 
   async function logout() {
-    removeCookie('tokenAccess')
-    resetUser()
-
+    removeCookie(tokenAccessKey)
+    userStore.resetUser()
     push({ path: '/login' })
-    return true
   }
 
   return {

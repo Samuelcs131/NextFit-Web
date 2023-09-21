@@ -32,7 +32,6 @@ module.exports = configure(function (ctx) {
     boot: [
       'i18n',
       'axios',
-      'serviceProviders',
       'visual'
     ],
 
@@ -73,7 +72,7 @@ module.exports = configure(function (ctx) {
       // analyze: true,
       env: {
         API: ctx ? process.env.API_URL : process.env.API_URL,
-        USER_TOKEN_ESPIRY_TIME: process.env.USER_TOKEN_ESPIRY_TIME
+        ACCESS_TOKEN_DURATION: ctx ? process.env.ACCESS_TOKEN_DURATION : process.env.ACCESS_TOKEN_DURATION,
       },
       // rawDefine: {}
       // ignorePublicFolder: true,

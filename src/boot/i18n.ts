@@ -33,7 +33,7 @@ export default boot(({ app }) => {
   app.use(i18n)
 })
 
-const i18n = createI18n({
+export const i18n = createI18n({
   locale: storage.language,
   globalInjection: true,
   messages,

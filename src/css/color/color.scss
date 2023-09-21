@@ -4,6 +4,9 @@
 .bg-secondary{
   color: $accent-constrast-text !important;
 }
+.bg-default{
+  color: $default-constrast-text !important;
+}
 .bg-accent{
   color: $accent-constrast-text !important;
 }
@@ -18,4 +21,14 @@
 }
 .bg-negative{
   color: $negative-constrast-text !important;
+}
+
+.text-default-primary {
+  color: $text-primary;
+}
+.text-default-secondary {
+  color: $text-secondary;
+}
+.text-default-disabled {
+  color: $text-disabled;
 }

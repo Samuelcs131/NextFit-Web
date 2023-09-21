@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-vars */
 export enum HttpStatus {
+  GENERIC = 0,
   CONTINUE = 100,
   SWITCHING_PROTOCOLS = 101,
   PROCESSING = 102,

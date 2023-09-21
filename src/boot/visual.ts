@@ -1,3 +1,4 @@
+import { GlobalComponentConstructor, QBtnProps, QBtnSlots } from 'quasar'
 import { boot } from 'quasar/wrappers'
 import { useVisualComponents } from 'src/composables/useVisualComponents'
 
@@ -17,6 +18,7 @@ declare module '@vue/runtime-core' {
     $vWarningBtn: object
     $vInfoBtn: object
     $vBanner: object
+    QBtn: GlobalComponentConstructor<QBtnProps, QBtnSlots>;
   }
 }
 

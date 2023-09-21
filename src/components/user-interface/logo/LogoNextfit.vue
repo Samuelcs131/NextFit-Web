@@ -18,7 +18,6 @@
   </q-icon>
 </template>
 <script setup lang="ts">
-import { PropType } from 'vue'
 
 defineProps({
   size: {

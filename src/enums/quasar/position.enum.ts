@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum QPosition {
   topLeft = 'top-left',
   topRight = 'top-right',

@@ -1,5 +1,6 @@
 import { ThemeTemplates } from 'src/theme/enums/themeTemplates.enum'
 import { IThemeMode } from './types/IThemeMode.type'
+import { greyScale } from './greyScale.theme'
 
 export const themeMode: IThemeMode = {
   [ThemeTemplates.dark]: {
@@ -24,8 +25,9 @@ export const themeMode: IThemeMode = {
     background: {
       constrastText: '#212b36',
       caption: '#919eab',
+      // default: '#FFFFFF',
       default: '#F9FAFB',
-      neutral: '#F9FAFB',
+      neutral: greyScale.G200.main,
       paper: '#FFFFFF',
       shadow:
         'rgba(145, 158, 171, 0.2) 0px 0px 2px 0px, rgba(145, 158, 171, 0.12) 0px 12px 24px -4px',

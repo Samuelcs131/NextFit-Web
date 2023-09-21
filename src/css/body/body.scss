@@ -11,12 +11,7 @@ body{
 
 }
 
-/* .q-list--dark, .q-item--dark {
-  color: $text-primary;
-} */
-
 .q-dark {
-  color: $text-primary !important;
-  background: $dark !important;
+  color: $text-primary;
+  background: $dark;
 }
-

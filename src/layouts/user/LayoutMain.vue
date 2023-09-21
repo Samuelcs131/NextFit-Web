@@ -3,16 +3,22 @@
     <q-header class="header-layout-main">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title> {{ $t(`common.${namePage}`) }} </q-toolbar-title>
+        <q-toolbar-title v-if="namePage">
+          {{ te(routerTitle[namePage]) ? $t(routerTitle[namePage]) : namePage }}
+        </q-toolbar-title>
 
         <q-space />
 
         <q-item :clickable="false">
           <q-btn round unelevated>
-            <q-avatar size="38px">
+            <q-avatar size="44px" class="bg-theme-paper">
               <q-img
-                :src="getAvatar(userStore.user?.avatar).img"
-                :alt="getAvatar(userStore.user?.avatar).name"
+                v-if="userStore.userState"
+                loading="lazy"
+                :src="avatarPicturesDictionary[userStore.userState.avatar].img"
+                :alt="
+                  avatarPicturesDictionary[userStore.userState.avatar].label
+                "
               />
             </q-avatar>
           </q-btn>
@@ -20,15 +26,15 @@
             <q-list style="min-width: 150px" dense>
               <q-item class="q-my-xs non-selectable">
                 <q-item-section>
-                  <q-item-label>{{ userStore.user?.name }}</q-item-label>
+                  <q-item-label>{{ userStore.userState?.name }}</q-item-label>
                   <q-item-label class="text-grey" caption lines="1">{{
-                    userStore.user?.email
+                    userStore.userState?.email
                   }}</q-item-label>
                 </q-item-section>
               </q-item>
               <q-separator />
-              <q-item clickable v-close-popup @click="logout">
-                <q-item-section>{{ $t('ui.exit') }}</q-item-section>
+              <q-item clickable v-close-popup @click="logout()">
+                <q-item-section>{{ $t('buttons.exit') }}</q-item-section>
               </q-item>
             </q-list>
           </q-menu>
@@ -40,11 +46,11 @@
       v-model="state.menu.drawer"
       show-if-above
       :mini="!state.menu.drawer || state.menu.mini"
-      @dblclick="state.menu.mini = !state.menu.mini"
-      :width="200"
+      :width="260"
       :breakpoint="400"
       :behavior="typeScreen"
-      class="bg-page"
+      class="border-dashed-right"
+      id="drawer-layout"
     >
       <q-scroll-area class="fit">
         <q-item>
@@ -57,40 +63,40 @@
           </q-item-section>
         </q-item>
 
-        <items-menu :items="optionsMenu" />
+        <dynamic-menu :mini-menu="state.menu.mini" :items="menuOptions" />
       </q-scroll-area>
     </q-drawer>
 
     <q-page-container>
       <router-view />
     </q-page-container>
-
-    <NextFitLoading :loader-id="userLayoutLoader.isLoggedIn" />
   </q-layout>
 </template>
 
 <script lang="ts" setup>
-import { useUserStore } from 'src/stores/UserStore'
-import { optionsMenu } from './constants/optionsMenu'
-import { useUserLayout } from './composables/useUserLayout'
-import { userLayoutLoader } from './enums/userLayoutLoaders.enum'
-import { getAvatar } from 'src/utils/avatar/avatar'
-import NextFitLoading from 'src/components/user-interface/loading-templates/NextFitLoading.vue'
-import ItemsMenu from './components/items-menu/ItemsMenu.vue'
-import LogoNextfit from 'src/components/user-interface/logo/LogoNextfit.vue'
+  import { useUserStore } from 'src/stores/UserStore'
+  import { useUserLayout } from './composables/useUserLayout'
+  import LogoNextfit from 'src/components/user-interface/logo/LogoNextfit.vue'
+  import { menuOptions } from './constants/menuOptions.const'
+  import DynamicMenu from 'src/components/user-interface/dynamic-menu/DynamicMenu.vue'
+  import { avatarPicturesDictionary } from 'src/constants/user/avatar.const'
+  import { useUserAuth } from 'src/composables/useUserAuth'
+  import { onBeforeMount } from 'vue'
+  import { useI18n } from 'src/boot/i18n'
+  import { routerTitle } from 'src/constants/routes/router.const'
 
-const {
-  namePage,
-  typeScreen,
-  state,
-  checkILoggedIn,
-  toggleLeftDrawer,
-  defineTypeMenu,
-  logout,
-} = useUserLayout()
+  const { namePage, typeScreen, state, toggleLeftDrawer, defineTypeMenu } =
+    useUserLayout()
+  const { logout } = useUserAuth()
+  const userStore = useUserStore()
+  const { te } = useI18n()
 
-// checkILoggedIn(userLayoutLoader.isLoggedIn)
-defineTypeMenu()
-
-const userStore = useUserStore()
+  onBeforeMount(() => {
+    defineTypeMenu()
+  })
 </script>
+<style lang="scss">
+#drawer-layout {
+  border-right: 1px dashed $divider;
+}
+</style>

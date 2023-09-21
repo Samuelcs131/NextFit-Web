@@ -1,38 +1,40 @@
 <template>
   <q-btn
     :style="{ width: width }"
-    v-bind="{
-      color: visual,
-      unelevated: defaultUnelevated,
-      flat: flat || soft,
-      class: visualClass(),
-    }"
+    :color="visual"
+    :unelevated="unelevated === undefined ? true : unelevated"
+    :flat="flat || soft"
+    :class="`${visualClass()} ${props.class}`"
   >
     <slot></slot>
   </q-btn>
 </template>
 <script setup lang="ts">
-import { TypeButton } from './enum/typeButton.enum'
-import { QBtnProps } from 'quasar'
-import { removeFalsey } from 'src/utils/array/removeFalsey.utils'
+  import { TypeButton } from './enum/TypeButton.enum'
+  import { QBtnProps } from 'quasar'
+import ButtonPimba from 'src/components/v-table/ButtonPimba.vue'
+  import { removeFalsey } from 'src/utils/array/removeFalsey.utils'
 
-interface IProps extends QBtnProps {
-  visual: `${TypeButton}`
-  brightness?: boolean
-  soft?: boolean
-  width?: string
-}
+  interface IProps extends QBtnProps {
+    visual: `${TypeButton}`
+    brightness?: boolean
+    soft?: boolean
+    width?: string
+    unelevated?: boolean
+    flat?: boolean
+    class?: string
+  }
 
-const props = defineProps<IProps>()
+  const props = defineProps<IProps>()
 
-const defaultUnelevated = props.unelevated === undefined ? true : props.unelevated
+  function visualClass() {
+    const { brightness, soft, visual } = props
 
-function visualClass() {
-  const classCss = [
-    props.brightness && `${props.visual}-brightness`,
-    props.soft && 'q-manual-focusable--focused',
-  ]
+    const styles = removeFalsey([
+      brightness && `${visual}-brightness`,
+      soft && 'q-manual-focusable--focused',
+    ])
 
-  return removeFalsey(classCss).join(' ')
-}
+    return styles.join(' ')
+  }
 </script>

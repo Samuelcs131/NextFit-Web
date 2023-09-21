@@ -1,20 +1,119 @@
-.bg-default {
+// THEME
+.bg-theme-default {
+  background-color: $dark-page;
+}
+.bg-theme-paper {
   background-color: $dark;
 }
+.bg-theme-neutral {
+  background-color: $neutral;
+}
 
-.bg-primary{
+// BACKGROUND
+.bg-primary {
   color: $primary-constrast-text !important;
 }
-
-.bg-secondary{
+.bg-primary-opacity-30 {
+  background-color: $primary-opacity-30 !important;
+}
+.bg-secondary {
   color: $secondary-constrast-text !important;
 }
-
-.bg-accent{
+.bg-default {
+  background-color: $default !important;
+}
+.bg-accent {
   color: $accent-constrast-text !important;
 }
 
+// LIGHTER
+.bg-primary-lighter {
+  background: $primary-lighter;
+}
+.bg-secondary-lighter {
+  background: $secondary-lighter;
+}
+.bg-positive-lighter {
+  background: $positive-lighter;
+}
+.bg-negative-lighter {
+  background: $negative-lighter;
+}
+.bg-info-lighter {
+  background: $info-lighter;
+}
+.bg-warning-lighter {
+  background: $warning-lighter;
+}
 
-.q-notification__progress{
+// LIGHT
+.bg-primary-light {
+  background: $primary-light;
+}
+.bg-secondary-light {
+  background: $secondary-light;
+}
+.bg-positive-light {
+  background: $positive-light;
+}
+.bg-negative-light {
+  background: $negative-light;
+}
+.bg-info-light {
+  background: $info-light;
+}
+.bg-warning-light {
+  background: $warning-light;
+}
+
+// DARK
+.bg-primary-dark {
+  background: $primary-dark;
+}
+.bg-secondary-dark {
+  background: $secondary-dark;
+}
+.bg-positive-dark {
+  background: $positive-dark;
+}
+.bg-negative-dark {
+  background: $negative-dark;
+}
+.bg-info-dark {
+  background: $info-dark;
+}
+.bg-warning-dark {
+  background: $warning-dark;
+}
+// DARK
+.bg-primary-darker {
+  background: $primary-darker;
+}
+.bg-secondary-darker {
+  background: $secondary-darker;
+}
+.bg-positive-darker {
+  background: $positive-darker;
+}
+.bg-negative-darker {
+  background: $negative-darker;
+}
+.bg-info-darker {
+  background: $info-darker;
+}
+.bg-warning-darker {
+  background: $warning-darker;
+}
+
+// DARKER
+.bg-primary-darker {
+  background: $primary-darker;
+}
+.bg-secondary-darker {
+  background: $secondary-darker;
+}
+
+// NOTIFY
+.q-notification__progress {
   background: $grey-500 !important;
 }

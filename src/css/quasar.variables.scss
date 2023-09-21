@@ -5,18 +5,52 @@ $dark-page-opacity-70: rgba($dark-page-rgb, 0.7);
 
 // PAPER
 $dark: var(--q-paper);
+$dark-lighten-15: var(--q-paper-lighten-15);
 $paper-shadow: var(--q-paper-shadow);
 
+// NEUTRAL
+$neutral: var(--q-neutral);
+$neutral-rgb: var(--q-neutral-rgb);
+
 // GREY
-$grey-100: #f9fafb;
-$grey-200: #f4f6f8;
-$grey-300: #dfe3e8;
-$grey-400: #c4cdd5;
-$grey-500: #919eab;
-$grey-600: #637381;
-$grey-700: #454f5b;
-$grey-800: #212b36;
-$grey-900: #161c24;
+$grey-100: var(--q-G100);
+$grey-200: var(--q-G200);
+$grey-300: var(--q-G300);
+$grey-400: var(--q-G400);
+$grey-500: var(--q-G500);
+$grey-600: var(--q-G600);
+$grey-700: var(--q-G700);
+$grey-800: var(--q-G800);
+$grey-900: var(--q-G900);
+$grey-100-constrast-text: var(--q-G100-constrast-text);
+$grey-200-constrast-text: var(--q-G200-constrast-text);
+$grey-300-constrast-text: var(--q-G300-constrast-text);
+$grey-400-constrast-text: var(--q-G400-constrast-text);
+$grey-500-constrast-text: var(--q-G500-constrast-text);
+$grey-600-constrast-text: var(--q-G600-constrast-text);
+$grey-700-constrast-text: var(--q-G700-constrast-text);
+$grey-800-constrast-text: var(--q-G800-constrast-text);
+$grey-900-constrast-text: var(--q-G900-constrast-text);
+
+$grey-100-rgb: var(--q-G100-rgb);
+$grey-200-rgb: var(--q-G200-rgb);
+$grey-300-rgb: var(--q-G300-rgb);
+$grey-400-rgb: var(--q-G400-rgb);
+$grey-500-rgb: var(--q-G500-rgb);
+$grey-600-rgb: var(--q-G600-rgb);
+$grey-700-rgb: var(--q-G700-rgb);
+$grey-800-rgb: var(--q-G800-rgb);
+$grey-900-rgb: var(--q-G900-rgb);
+
+$grey-100-opacity-10: rgba($grey-100-rgb, 0.1);
+$grey-200-opacity-10: rgba($grey-200-rgb, 0.1);
+$grey-300-opacity-10: rgba($grey-300-rgb, 0.1);
+$grey-400-opacity-10: rgba($grey-400-rgb, 0.1);
+$grey-500-opacity-10: rgba($grey-500-rgb, 0.1);
+$grey-600-opacity-10: rgba($grey-600-rgb, 0.1);
+$grey-700-opacity-10: rgba($grey-700-rgb, 0.1);
+$grey-800-opacity-10: rgba($grey-800-rgb, 0.1);
+$grey-900-opacity-10: rgba($grey-900-rgb, 0.1);
 
 // PRIMARY
 $primary: var(--q-primary);
@@ -27,53 +61,65 @@ $primary-darker: var(--q-primary-darker);
 $primary-constrast-text: var(--q-primary-constrast-text);
 $primary-rgb: var(--q-primary-rgb);
 $primary-opacity-15: rgba($primary-rgb, 0.15);
+$primary-opacity-30: rgba($primary-rgb, 0.3);
 $primary-brightness: 0px 8px 16px rgba(var(--q-primary-brightness), 0.24);
 
 // SECONDARY
-$secondary: #c4cdd5;
-$secondary-constrast-text: $grey-900;
-$secondary-brightness: 0px 8px 16px rgba($secondary, 0.24);
+$secondary-lighter: var(--q-secondary-lighter);
+$secondary-light: var(--q-secondary-light);
+$secondary: var(--q-secondary);
+$secondary-dark: var(--q-secondary-dark);
+$secondary-darker: var(--q-secondary-darker);
+$secondary-constrast-text: var(--q-secondary-constrast-text);
+$secondary-brightness: 0px 8px 16px rgba(var(--q-secondary-brightness), 0.24);
+$secondary-rgb: var(--q-secondary-rgb);
+$secondary-opacity-10: rgba($secondary-rgb, 0.1);
+
+// DEFAULT
+$default: $grey-400;
+$default-constrast-text: $grey-900;
+$default-brightness: 0px 8px 16px rgba($default, 0.24);
 
 // ACCENT
-$accent: #919eab;
+$accent: $grey-400;
 $accent-constrast-text: $grey-900;
 $accent-brightness: 0px 8px 16px rgba($accent, 0.24);
 
 // POSITIVE
-$positive: #36B37E;
-$positive-constrast-text: #fff;
-$positive-brightness: 0px 8px 16px rgba(31, 221, 63, 0.24);
-$positive-lighter: #D8FBDE;
-$positive-light: #86E8AB;
-$positive-dark: #1B806A;
-$positive-darker: #0A5554;
+$positive-lighter: var(--q-positive-lighter);
+$positive-light: var(--q-positive-light);
+$positive: var(--q-positive);
+$positive-dark: var(--q-positive-dark);
+$positive-darker: var(--q-positive-darker);
+$positive-constrast-text: var(--q-positive-constrast-text);
+$positive-brightness: 0px 8px 16px rgba(var(--q-positive-brightness), 0.24);
 
 // NEGATIVE
-$negative: #ff5630;
-$negative-constrast-text: #fff;
-$negative-brightness: 0px 8px 16px rgba(255, 86, 48, 0.24);
-$negative-lighter: #ffe9d5;
-$negative-light: #ffac82;
-$negative-dark: #b71d18;
-$negative-darker: #7a0916;
+$negative-lighter: var(--q-negative-lighter);
+$negative-light: var(--q-negative-light);
+$negative: var(--q-negative);
+$negative-dark: var(--q-negative-dark);
+$negative-darker: var(--q-negative-darker);
+$negative-constrast-text: var(--q-negative-constrast-text);
+$negative-brightness: 0px 8px 16px rgba(var(--q-negative-brightness), 0.24);
 
 // INFO
-$info:#00B8D9;
-$info-constrast-text:#fff;
-$info-brightness: 0px 8px 16px rgba(0, 184, 217, 0.24);
-$info-lighter: #CAFDF5;
-$info-light: #61F3F3;
-$info-dark: #006C9C;
-$info-darker: #003768;
+$info-lighter: var(--q-info-lighter);
+$info-light: var(--q-info-light);
+$info: var(--q-info);
+$info-dark: var(--q-info-dark);
+$info-darker: var(--q-info-darker);
+$info-constrast-text: var(--q-info-constrast-text);
+$info-brightness: 0px 8px 16px rgba(var(--q-info-brightness), 0.24);
 
 // WARNING
-$warning: #FFAB00;
-$warning-constrast-text: $grey-900;
-$warning-brightness: 0px 8px 16px rgba(255, 171, 0, 0.24);
-$warning-lighter: #FFF5CC;
-$warning-light: #FFD666;
-$warning-dark: #B76E00;
-$warning-darker: #7A4100;
+$warning-lighter: var(--q-warning-lighter);
+$warning-light: var(--q-warning-light);
+$warning: var(--q-warning);
+$warning-dark: var(--q-warning-dark);
+$warning-darker: var(--q-warning-darker);
+$warning-constrast-text: var(--q-warning-constrast-text);
+$warning-brightness: 0px 8px 16px rgba(var(--q-warning-brightness), 0.24);
 
 // SHADOW
 $background-page-shadow: var(--q-background-page-shadow);
@@ -83,6 +129,7 @@ $stretch-max-width: var(--q-stretch-max-width);
 
 // TEXT
 $text-primary: var(--q-text-primary);
+$text-primary-rgb: var(--q-text-primary-rgb);
 $text-secondary: var(--q-text-secondary);
 $text-disabled: var(--q-text-disabled);
 
@@ -92,5 +139,4 @@ $card-border: 16px;
 // SEPARATOR
 $separator-color: var(--q-divider);
 $separator-dark-color: var(--q-divider);
-
-
+$divider: var(--q-divider);

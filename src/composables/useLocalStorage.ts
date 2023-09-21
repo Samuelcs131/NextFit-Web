@@ -1,6 +1,6 @@
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { LocalStorage } from 'quasar'
-import { languages } from 'src/i18n/enums/languages.enum'
+import { Languages } from 'src/i18n/enums/languages.enum'
 import { themeColors } from 'src/theme/colors.theme'
 import { themeMode } from 'src/theme/mode.theme'
 import { ThemeTemplates } from 'src/theme/enums/themeTemplates.enum'
@@ -18,7 +18,7 @@ const initializeStorage: IStorage = {
   themeMode: store.themeMode || Object.keys(themeMode)[0],
   themeColors: store.themeColors || Object.keys(themeColors)[0],
   stretch: store.stretch || false,
-  language: store.language || languages.ptBR,
+  language: store.language || Languages.ptBR,
 }
 
 const storage = ref(initializeStorage)
@@ -43,5 +43,7 @@ export function useLocalStorage() {
     } */
   }
 
-  return { storage, initialStorage, setLocalStorage, getLocalStorage }
+  const storeCurrent = computed(() => storage.value)
+
+  return { storage, storeCurrent, initialStorage, setLocalStorage, getLocalStorage }
 }

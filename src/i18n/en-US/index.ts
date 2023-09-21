@@ -2,66 +2,107 @@
 // so you can safely delete all default props below
 
 export default {
-  form: {
-    logIn: 'LogIn',
-    email: 'Email',
-    password: 'Password',
-    forgotPassword: 'Forgot password?'
-  },
-  common: {
-    dashboard: 'Dashboard',
-    activities: 'Activities',
-    profile: 'Profile',
-    settings: 'Settings',
-    colors: 'Colors',
-    designSystem: 'Design system'
-  },
-  formValidation: {
-    email: 'Invalid email format',
-    spacedPassword: 'Cannot contain spaces',
-    minPassword: 'Must contain at least 8 characters',
-    maxPassword: 'Must contain a maximum of 16 characters'
-  },
-  apiErrors: {
-    unauthorized: {
-      title: 'Unauthenticated',
-      description: 'Invalid username and/or password'
-    },
-    internalServerError: {
-      title: 'Internal error',
-      description: 'A server error occurred, please try again later'
-    },
-    unexpectedError: {
-      title: 'Unexpected error',
-      description: 'Contact support and try again later'
-    },
-    badRequest: {
-      title: 'Form error',
-      description: 'Fill in all the fields, and validate the formatting'
-    }
-  },
-  ui: {
+  buttons: {
+    back: 'Back',
+    buttons: 'Buttons',
+    cancel: 'Cancel',
+    close: 'Close',
+    confirm: 'Confirm',
+    create: 'Create',
+    delete: 'Delete',
+    edit: 'Edit',
     exit: 'Exit',
-    dashboard: 'Dashboard',
-    activities: 'Activities',
-    settings: 'Settings',
-    profile: 'Profile',
-    colors: 'Colors',
-    language: 'Language',
-    dark: 'Dark',
-    light: 'Light',
-    info: 'Info',
-    success: 'Success',
-    warning: 'Warning',
-    error: 'Error',
-    maximized: 'Maximized',
-    limited: 'Limited',
+    logIn: 'Log In',
+    save: 'Save',
+    saveChanges: 'Save Changes',
+    search: 'Search',
+    send: 'Send',
+    submit: 'Submit',
+    update: 'Update',
   },
   colors: {
     blue: 'Blue',
-    red: 'Red',
-    purple: 'Purple',
+    colors: 'Colors',
+    dark: 'Dark',
     green: 'Green',
-    orange: 'Orange'
-  }
+    light: 'Light',
+    orange: 'Orange',
+    purple: 'Purple',
+    red: 'Red',
+    shadows: 'Shadows',
+  },
+  greetings: {
+    hello: 'Hello, {name}!',
+    welcomeNextFit: 'Welcome to NextFit!',
+  },
+  interface: {
+    alert: 'Alert',
+    dynamicMenu: 'Dynamic Menu',
+    error: 'Error',
+    forgotPassword: 'Forgot Password?',
+    initialPage: 'Home Page',
+    limited: 'Limited',
+    maximized: 'Maximized',
+    overview: 'Overview',
+    select: 'Select an option',
+    success: 'Success',
+    warning: 'Warning',
+  },
+  labels: {
+    address: 'Address',
+    age: 'Age',
+    birthday: 'Date of Birth',
+    city: 'City',
+    country: 'Country',
+    email: 'Email',
+    firstName: 'First Name',
+    gender: 'Gender',
+    language: 'Language',
+    name: 'Name',
+    other: 'Other',
+    password: 'Password',
+    phoneNumber: 'Phone Number',
+    sex: 'Sex',
+    state: 'State',
+    surName: 'Surname',
+    timezone: 'Timezone',
+    username: 'Username',
+    zipCode: 'ZIP Code',
+  },
+  magnitudes: {
+    height: 'Height',
+    weight: 'Weight',
+  },
+  navigation: {
+    about: 'About',
+    dashboard: 'Dashboard',
+    definitions: 'Definitions',
+    help: 'Help',
+    home: 'Home',
+    login: 'Login',
+    logout: 'Logout',
+    notifications: 'Notifications',
+    profile: 'Profile',
+    settings: 'Settings',
+  },
+  numerics: {
+    negative: 'Negative',
+    positive: 'Positive',
+    primary: 'Primary',
+    secondary: 'Secondary',
+  },
+  placeholders: {
+    activities: 'Activities',
+    components: 'Components',
+    designSystem: 'Design System',
+    documentation: 'Documentation',
+    female: 'Female',
+    information: 'Information',
+    informative: 'Informative',
+    limited: 'Limited',
+    male: 'Male',
+    maximized: 'Maximized',
+    personalization: 'Personalization',
+    treeSelect: 'Tree Select',
+  },
 }

@@ -9,6 +9,10 @@ export interface IThemeColorProps {
   lighter: string
 }
 
-export interface IThemeColors {
+export interface IColorPresets {
   [key: string]: IThemeColorProps
+}
+
+export interface IThemeColors {
+  [key: string]: IColorPresets
 }

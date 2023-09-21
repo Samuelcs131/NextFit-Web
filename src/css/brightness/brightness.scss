@@ -4,7 +4,10 @@
 .secondary-brightness {
   box-shadow: $secondary-brightness !important;
 }
-.tertiary-brightness {
+.default-brightness {
+  box-shadow: $default-brightness !important;
+}
+.accent-brightness {
   box-shadow: $accent-brightness !important;
 }
 .info-brightness {

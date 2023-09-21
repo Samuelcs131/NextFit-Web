@@ -1,6 +1,9 @@
 .border-dashed {
   border: 1px dashed $text-disabled;
 }
+.border-dashed-right {
+  border-right: 1px dashed $text-disabled;
+}
 
 .circle-border {
   border-radius: 50%;

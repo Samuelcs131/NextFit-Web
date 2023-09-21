@@ -1,5 +1,6 @@
-export enum country {
-  AF,
+/* eslint-disable no-unused-vars */
+export enum Country {
+  AF = 1,
   AX,
   AL,
   DZ,

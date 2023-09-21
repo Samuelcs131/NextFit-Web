@@ -5,4 +5,5 @@ export enum illustrativeOptions {
   search = 'search',
   notebook = 'notebook',
   dashboard = 'dashboard',
+  empty = 'empty',
 }

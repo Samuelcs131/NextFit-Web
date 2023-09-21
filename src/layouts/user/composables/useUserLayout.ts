@@ -1,8 +1,10 @@
 import { Screen } from 'quasar'
-import useLoader from 'src/composables/useLoader'
 import { useUserAuth } from 'src/composables/useUserAuth'
+import ActionDispatcher from 'src/helpers/requester/Requester.helper'
 import { ref, computed } from 'vue'
 import { useRoute } from 'vue-router'
+import { userLayoutLoader } from '../enums/userLayoutLoaders.enum'
+import { fakePromise } from 'src/utils/fakePromise.util'
 
 interface IState {
   menu: {
@@ -13,18 +15,20 @@ interface IState {
 
 const state = ref<IState>({
   menu: {
-    drawer: true,
-    mini: true,
+    drawer: false,
+    mini: false,
   },
 })
 
 export function useUserLayout() {
-  const { isLoggedIn, logout } = useUserAuth()
   const route = useRoute()
-  const { toggleLoading } = useLoader()
 
   function toggleLeftDrawer() {
-    state.value.menu.drawer = !state.value.menu.drawer
+    if (Screen.width < 768) {
+      state.value.menu.drawer = !state.value.menu.drawer
+    } else {
+      state.value.menu.mini = !state.value.menu.mini
+    }
   }
 
   function defineTypeMenu() {
@@ -32,15 +36,17 @@ export function useUserLayout() {
     state.value.menu.mini = Screen.width < 1200
   }
 
-  async function checkILoggedIn(loader: string) {
-    toggleLoading(loader)
-    await new Promise((resolve) => {
-      const wait = setTimeout(() => {
-        clearTimeout(wait)
-        resolve(isLoggedIn())
-      }, 400)
+  async function checkILoggedIn() {
+    const { isLoggedIn } = useUserAuth()
+
+    ActionDispatcher.dispatch({
+      callback: async () => {
+        await fakePromise(1500)
+
+        isLoggedIn()
+      },
+      loaders: [userLayoutLoader.isLoggedIn],
     })
-    toggleLoading(loader)
   }
 
   function formattedBreadcrumbs() {
@@ -62,9 +68,10 @@ export function useUserLayout() {
 
   const breadcrumbs = computed(() => formattedBreadcrumbs())
 
-  const typeScreen = computed(() =>
-    Screen.width <= 768 ? 'mobile' : 'desktop'
-  )
+  const typeScreen = computed(() => {
+    if (Screen.width < 768) state.value.menu.mini = false
+    return Screen.width <= 768 ? 'mobile' : 'desktop'
+  })
 
   return {
     state,
@@ -75,7 +82,5 @@ export function useUserLayout() {
     toggleLeftDrawer,
     defineTypeMenu,
     checkILoggedIn,
-    logout,
-    isLoggedIn,
   }
 }

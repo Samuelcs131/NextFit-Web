@@ -1,3 +1,7 @@
+/**
+ * Classe de utilitário para gerar mensagens de erro relacionadas a enumerações.
+ */
+
 export class EnumForm {
   static formattedString<T>(enumOptions: T) {
     const enumOptionsData = []
@@ -18,7 +22,7 @@ export class EnumForm {
   static enum<T>(enumOptions: T): string {
     const { value, moreEnumOptions } = this.formattedString(enumOptions)
 
-    return `O campo corresponde as opções (${value}${
+    return `Deve corresponder as opções (${value}${
       moreEnumOptions ? ', ...)' : ')'
     }`
   }

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "dashboard",
+    "icon": "bar_chart",
+    "path": "app/dashboard"
+  },
+  {
+    "name": "activities",
+    "icon": "bolt",
+    "path": "app/activities"
+  },
+  {
+    "name": "profile",
+    "icon": "person",
+    "path": "app/profile"
+  },
+  {
+    "name": "settings",
+    "icon": "settings",
+    "children": [
+      {
+        "name": "designSystem",
+        "children": [
+          {
+            "name": "buttons",
+            "icon": "*",
+            "path": "app/settings/designSystem/buttons"
+          },
+          {
+            "name": "colors",
+            "icon": "*",
+            "path": "app/settings/designSystem/colors"
+          }
+        ]
+      }
+    ]
+  }
+]

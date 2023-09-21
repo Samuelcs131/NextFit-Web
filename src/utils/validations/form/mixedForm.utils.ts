@@ -1,6 +1,9 @@
+/**
+ * Classe de utilitário para gerar mensagens de erro relacionadas a validações diversas.
+ */
 export class MixedForm {
-  static default(): string {
-    return 'O campo é inválido.'
+  static invalid(): string {
+    return 'Não deve ser inválido.'
   }
 
   static hasSpaces(): string {
@@ -12,22 +15,22 @@ export class MixedForm {
   }
 
   static oneOf(values: unknown): string {
-    return `O campo deve ter um dos seguintes valores: ${values}.`
+    return `Deve ter um dos seguintes valores: ${values}.`
   }
 
   static notOneOf(values: unknown): string {
-    return `O campo não deve ter nenhum dos seguintes valores: ${values}.`
+    return `Não deve ter nenhum dos seguintes valores: ${values}.`
   }
 
   static defined(): string {
-    return 'O campo não deve ser indefinido.'
+    return 'Não deve ser indefinido.'
   }
 
   static empty(): string {
-    return 'O campo não deve ser vazio.'
+    return 'Não deve ser vazio.'
   }
 
   static strongPassword(): string {
-    return 'O campo deve ter uma senha forte.'
+    return 'Deve ter uma senha forte.'
   }
 }

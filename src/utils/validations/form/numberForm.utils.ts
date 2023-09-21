@@ -1,3 +1,6 @@
+/**
+ * Classe de utilitário para gerar mensagens de erro relacionadas a validações numéricas.
+ */
 export class NumberForm {
   static min(min: number): string {
     return `Deve ser maior ou igual a ${min}.`
@@ -16,7 +19,7 @@ export class NumberForm {
   }
 
   static notEqual(notEqual: unknown): string {
-    return `Dão deve ser igual a ${notEqual}.`
+    return `Não deve ser igual a ${notEqual}.`
   }
 
   static positive(): string {
@@ -29,5 +32,9 @@ export class NumberForm {
 
   static integer(): string {
     return 'Deve ser um número inteiro.'
+  }
+
+  static number(): string {
+    return 'Deve ser do tipo numérico'
   }
 }

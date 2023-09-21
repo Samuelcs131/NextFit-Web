@@ -1,67 +1,48 @@
-import useSearch from 'src/composables/useSearch'
-import { country } from 'src/enums/user/country.enum'
-import { sex } from 'src/enums/user/sex.enum'
 import { ref } from 'vue'
-import { countryOptions } from '../constants/countryOptions.const'
+import { Form } from 'src/domain/application/entities/form/Form.entity'
+import { User } from 'src/domain/application/entities/user/User.entity'
+import ActionDispatcher from 'src/helpers/requester/Requester.helper'
+import { fakePromise } from 'src/utils/fakePromise.util'
+import { registerLoader } from '../constants/registerLoader.const'
 
 interface IState {
-  form: {
-    name: string | null
-    lastName: string | null
-    email: string | null
-    sex: number
-    age: number | null
-    height: number | null
-    weight: number | null
-    country: number
-    password: string | null
-    terms: boolean
-  }
-  options: {
-    country: any[]
-  }
-  visibilityPwd: boolean
-  btnLogInLoading: boolean
+  user: Form<User>
+  policyTerms: boolean
+  visibilityPassword: boolean
+  loadingButton: boolean
 }
 
-const initializeState: IState = {
-  form: {
-    name: null,
-    lastName: null,
-    email: null,
-    sex: sex.male,
-    age: null,
-    height: null,
-    weight: null,
-    country: country.BR,
-    password: null,
-    terms: false,
-  },
-  options: {
-    country: countryOptions,
-  },
-  visibilityPwd: true,
-  btnLogInLoading: false,
-}
+const state = ref({
+  user: new Form<User>(),
+  policyTerms: false,
+  visibilityPassword: true,
+  loadingButton: true,
+} as IState)
 
 export default function useRegisterMain() {
-  const state = ref(initializeState)
-
-  const { searchOn } = useSearch()
-
-  async function onRegister() {
-    return ''
+  function handleSubmitForm() {
+    ActionDispatcher.dispatch({
+      callback: async () => {
+        await fakePromise(4000)
+      },
+      loaders: [registerLoader.submitForm],
+      showAPIError: true,
+      errorException: [],
+    })
   }
 
-  function handleFilterCountry(value: string, update: any) {
-    update(() => {
-      state.value.options.country = searchOn(countryOptions, value)
-    })
+  function resetState() {
+    state.value = {
+      user: new Form<User>(),
+      policyTerms: false,
+      visibilityPassword: true,
+      loadingButton: true,
+    }
   }
 
   return {
     state,
-    onRegister,
-    handleFilterCountry,
+    resetState,
+    handleSubmitForm,
   }
 }

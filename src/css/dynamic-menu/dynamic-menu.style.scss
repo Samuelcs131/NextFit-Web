@@ -1,0 +1,72 @@
+.dynamic-menu {
+  .active-item {
+    background: $primary-opacity-15;
+  }
+
+  .q-item {
+    border-radius: $generic-border-radius !important;
+  }
+
+  .dynamic-menu__expansion {
+    // ACTIVE EXPANDED
+    .q-item[aria-expanded='true'] {
+      .q-item__section,
+      .icon-point {
+        color: $primary !important;
+      }
+    }
+
+    // ACTIVE OPTION
+    &.q-expansion-item--expanded[aria-level='1'] {
+      & > .q-expansion-item__container {
+        & > [aria-expanded='true'] {
+          background: $primary-opacity-15;
+        }
+      }
+    }
+
+    // COLLAPSE
+    .q-expansion-item__content {
+      margin-left: 27px;
+      border-left: 1px solid $separator-color;
+
+      .q-expansion-item__content {
+        margin-left: 19px;
+      }
+    }
+
+    // DISABLED EXPANDED
+    &[aria-minimenu='true'] {
+      > .q-expansion-item__container > .disabled {
+        opacity: 1 !important;
+
+        &:hover {
+          background-color: rgba($text-primary-rgb, 0.1);
+        }
+
+        &,
+        .q-icon,
+        .q-item__section--avatar {
+          cursor: pointer !important;
+        }
+      }
+    }
+  }
+
+  .active-expansion {
+    > .q-expansion-item__container {
+      > [aria-expanded='false'] {
+        background: $primary-opacity-15;
+      }
+
+      > .q-item {
+        &[aria-expanded='false'] {
+          .q-item__section,
+          .icon-point {
+            color: $primary !important;
+          }
+        }
+      }
+    }
+  }
+}
