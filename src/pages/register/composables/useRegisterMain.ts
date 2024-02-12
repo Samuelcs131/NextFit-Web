@@ -1,19 +1,19 @@
 import { ref } from 'vue'
 import { Form } from 'src/domain/application/entities/form/Form.entity'
-import { User } from 'src/domain/application/entities/user/User.entity'
 import ActionDispatcher from 'src/helpers/requester/Requester.helper'
 import { fakePromise } from 'src/utils/fakePromise.util'
 import { registerLoader } from '../constants/registerLoader.const'
+import { IUser } from 'src/types/user/IUser.type'
 
 interface IState {
-  user: Form<User>
+  user: Form<IUser>
   policyTerms: boolean
   visibilityPassword: boolean
   loadingButton: boolean
 }
 
 const state = ref({
-  user: new Form<User>(),
+  user: new Form<IUser>(),
   policyTerms: false,
   visibilityPassword: true,
   loadingButton: true,
@@ -27,13 +27,12 @@ export default function useRegisterMain() {
       },
       loaders: [registerLoader.submitForm],
       showAPIError: true,
-      errorException: [],
     })
   }
 
   function resetState() {
     state.value = {
-      user: new Form<User>(),
+      user: new Form<IUser>(),
       policyTerms: false,
       visibilityPassword: true,
       loadingButton: true,

@@ -1,3 +1,4 @@
+/* eslint-disable */
 export enum TypeButton {
   primary = 'primary',
   secondary = 'secondary',

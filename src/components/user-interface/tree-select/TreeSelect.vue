@@ -73,62 +73,62 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
-import { useTreeSelect } from './composables/useTreeSelect'
-import { ITreeSelect } from './types/ITreeSelect.type'
-import { QFieldProps, QTree } from 'quasar'
+  import { onBeforeMount } from 'vue'
+  import { useTreeSelect } from './composables/useTreeSelect'
+  import { ITreeSelect } from './types/ITreeSelect.type'
+  import { QFieldProps, QTree } from 'quasar'
 
-interface IProp extends QFieldProps {
-  options: ITreeSelect[]
-  tickStrategy?: 'none' | 'strict' | 'leaf' | 'leaf-filtered'
-  dense?: boolean
-  optionsDense?: boolean
-  useChips?: boolean
-  loading?: boolean
-  disable?: boolean
-  modelValue: string[] | null
-  useInput?: boolean
-  maxItemsDisplayed?: number
-  maxHeightMenu?: number
-  accordion?: boolean
-}
+  interface IProp extends QFieldProps {
+    options: ITreeSelect[]
+    tickStrategy?: 'none' | 'strict' | 'leaf' | 'leaf-filtered'
+    dense?: boolean
+    optionsDense?: boolean
+    useChips?: boolean
+    loading?: boolean
+    disable?: boolean
+    modelValue: string[] | null
+    useInput?: boolean
+    maxItemsDisplayed?: number
+    maxHeightMenu?: number
+    accordion?: boolean
+  }
 
-const props = defineProps<IProp>()
+  const props = defineProps<IProp>()
 
-const {
-  state,
-  treeView,
-  labelsText,
-  labelsChip,
-  isSelected,
-  clearField,
-  expandOptions,
-  getTickedNodes,
-  setValueInitial,
-  filterTreeSelect,
-  handleRemoveItem,
-} = useTreeSelect()
+  const {
+    state,
+    treeView,
+    labelsText,
+    labelsChip,
+    isSelected,
+    clearField,
+    expandOptions,
+    getTickedNodes,
+    setValueInitial,
+    filterTreeSelect,
+    handleRemoveItem,
+  } = useTreeSelect()
 
-onBeforeMount(() => {
-  const { options, modelValue } = props
-  setValueInitial(modelValue, options)
-})
+  onBeforeMount(() => {
+    const { options, modelValue } = props
+    setValueInitial(modelValue, options)
+  })
 
-const emit = defineEmits(['update:modelValue'])
+  const emit = defineEmits(['update:modelValue'])
 
-function handleSelect(ids: readonly string[]) {
-  getTickedNodes()
-  emit('update:modelValue', ids)
-}
+  function handleSelect(ids: readonly string[]) {
+    getTickedNodes()
+    emit('update:modelValue', ids)
+  }
 
-function handleClear() {
-  clearField()
-  emit('update:modelValue', [])
-}
+  function handleClear() {
+    clearField()
+    emit('update:modelValue', [])
+  }
 
-function removeItem(id: string) {
-  handleRemoveItem(id)
-  const ids = state.value.tree.selected.map(({ id }) => id)
-  emit('update:modelValue', ids)
-}
+  function removeItem(id: string) {
+    handleRemoveItem(id)
+    const ids = state.value.tree.selected.map(({ id }) => id)
+    emit('update:modelValue', ids)
+  }
 </script>

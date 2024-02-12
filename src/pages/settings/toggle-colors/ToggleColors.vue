@@ -18,7 +18,7 @@
           :style="{
             backgroundColor: getThemeColor(color.name).secondary.main,
           }"
-        ></span>
+        />
         <q-tooltip>{{ color.name }}</q-tooltip>
       </div>
     </div>
@@ -28,32 +28,26 @@
   import { themeColors } from 'src/theme/colors.theme'
   import { ThemeColors } from 'src/theme/enums/colors.enum'
   import { colorsOptions } from '../constants/colorsOptions.const'
-  import { ref, watch } from 'vue'
+  import { ref } from 'vue'
 
   interface IProps {
-    modelValue: string
+    value: ThemeColors
   }
 
   const props = defineProps<IProps>()
 
-  const selectedThemeColor = ref<string>(props.modelValue)
+  const selectedThemeColor = ref<ThemeColors>(props.value)
 
   const emit = defineEmits(['update:modelValue'])
 
   function setThemeColors(color: ThemeColors) {
+    selectedThemeColor.value = color
     emit('update:modelValue', color)
   }
 
   function getThemeColor(color: ThemeColors) {
     return themeColors[color]
   }
-
-  watch(
-    () => props.modelValue,
-    (value) => {
-      selectedThemeColor.value = value
-    }
-  )
 </script>
 <style lang="scss" scoped>
 .item-nex {

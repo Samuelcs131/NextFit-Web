@@ -1,9 +1,7 @@
 import { RouteRecordRaw } from 'vue-router'
 
-export const errorNotFoundRouterName = 'errorNotFound'
-
 export const errorNotFoundRouter: RouteRecordRaw = {
   path: '/:catchAll(.*)*',
-  name: errorNotFoundRouterName,
+  name: 'errorNotFound',
   component: () => import('pages/error-not-found/ErrorNotFound.vue'),
 }

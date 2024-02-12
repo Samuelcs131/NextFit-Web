@@ -105,11 +105,11 @@ module.exports = {
         indent: 'off',
       },
     },
-    {
-      files: ['src/i18n/**/*.ts'],
-      rules: {
-        'sort-keys': ['error', 'asc', { natural: true }],
-      },
-    },
+    // {
+    //   files: ['src/i18n/**/*.ts'],
+    //   rules: {
+    //     'sort-keys': ['error', 'asc', { natural: true }],
+    //   },
+    // },
   ],
 }

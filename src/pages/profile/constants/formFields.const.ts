@@ -1,7 +1,8 @@
-import { IDefaultFormField } from 'src/components/default-form/types/IDefaultFormField.type'
+import { IVFormField } from 'src/components/v-form/types/IVFormField.type'
 import { countryOptions } from 'src/constants/user/country.const'
 import { userEntityRoles } from 'src/constants/user/entityRoles.const'
 import { sexOptions } from 'src/constants/user/sex.const'
+import { t } from 'src/utils/translate/translateUtils'
 import {
   hasSpacesRule,
   requiredRule,
@@ -14,11 +15,11 @@ import { rangeRule } from 'src/utils/validations/form-rules/stringRules.uti'
 
 const { name, lastName, height, age } = userEntityRoles
 
-export const formFields: IDefaultFormField[] = [
+export const formFields: IVFormField[] = [
   {
     columnSize: 6,
     fieldName: 'name',
-    label: 'labels.name',
+    label: t('name'),
     type: 'string',
     rules: [
       requiredRule,
@@ -29,7 +30,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 6,
     fieldName: 'lastName',
-    label: 'labels.surName',
+    label: t('surName'),
     type: 'string',
     rules: [
       requiredRule,
@@ -40,7 +41,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'sex',
-    label: 'labels.sex',
+    label: t('sex'),
     type: 'options',
     rules: [requiredRule],
     options: sexOptions,
@@ -51,7 +52,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'height',
-    label: 'magnitudes.height',
+    label: t('height'),
     type: 'number',
     rules: [
       requiredRule,
@@ -62,7 +63,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'age',
-    label: 'labels.age',
+    label: t('age'),
     type: 'number',
     rules: [
       requiredRule,
@@ -73,7 +74,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'country',
-    label: 'labels.country',
+    label: t('country'),
     type: 'options',
     rules: [requiredRule],
     options: countryOptions,

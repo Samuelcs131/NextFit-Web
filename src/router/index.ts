@@ -9,17 +9,14 @@ import {
 } from 'vue-router'
 
 import routes from './routes'
-import { useUserAuth } from 'src/composables/useUserAuth'
+// import { useUserAuth } from 'src/composables/useUserAuth'
 import ActionDispatcher from 'src/helpers/requester/Requester.helper'
-import container from 'src/dependency-injection/inversify.config'
-import { IUserRepository } from 'src/domain/application/repositories/user/contract/IUserRepository.contract'
-import { repositoriesIdentifier } from 'src/constants/repositories/repositoriesIdentifier.const'
 import { fakePromise } from 'src/utils/fakePromise.util'
 import { useUserStore } from 'src/stores/UserStore'
-import { refreshError } from 'src/domain/application/repositories/user/errors/refresh.error'
 import { userLayoutLoader } from 'src/layouts/user/constants/userLayoutLoaders.const'
 import { tokenAccessKey } from 'src/constants/auth-user/tokenAccessKey.const'
 import { useCookies } from 'src/composables/useCookies'
+import { UserService } from 'src/service/nextfit/user/user.service'
 
 /*
  * If not building with SSR mode, you can
@@ -47,12 +44,13 @@ export default route(function (/* { store, ssrContext } */) {
     history: createHistory(process.env.VUE_ROUTER_BASE),
   })
 
-  function handleNotAuthorized(next: NavigationGuardNext): void {
+/*   function handleNotAuthorized(next: NavigationGuardNext): void {
     next('/')
     alert('Cê não pode acessar essa página boy!')
-  }
+  } */
 
   Router.beforeEach((to, from, next) => {
+    next()
     const { getCookie } = useCookies()
     const tokenAccess = getCookie(tokenAccessKey)
 
@@ -91,21 +89,19 @@ export default route(function (/* { store, ssrContext } */) {
     next: NavigationGuardNext
   ) {
     // debugger
+    // next()
     // const { getCookie } = useCookies()
 
     ActionDispatcher.dispatch({
       callback: async () => {
         // const tokenAccess = getCookie(tokenAccessKey)
 
-        const userRepository = container.get<IUserRepository>(
-          repositoriesIdentifier.user
-        )
 
         // if (!tokenAccess) return notIsLoggedIn(to, next)
 
         const userStore = useUserStore()
         await fakePromise(1000)
-        const user = await userRepository.refresh()
+        const { data:user } = await UserService.refresh()
         userStore.setUser(user)
         if (!user) notIsLoggedIn(to, next)
       },
@@ -114,7 +110,6 @@ export default route(function (/* { store, ssrContext } */) {
       },
       errorMessageTitle: 'Erro ao realizar',
       errorMessage: 'Erro ao fazer alguma coisa',
-      errorException: [new refreshError()],
       showAPIError: true,
       loaders: [userLayoutLoader.isLoggedIn],
     })

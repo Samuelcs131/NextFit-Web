@@ -1,7 +1,5 @@
 import { boot } from 'quasar/wrappers'
-import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
-import { useCookies } from 'src/composables/useCookies';
-import { tokenAccessKey } from 'src/constants/auth-user/tokenAccessKey.const';
+import axios, { AxiosInstance } from 'axios'
 
 declare module '@vue/runtime-core' {
   interface ComponentCustomProperties {

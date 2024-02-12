@@ -13,6 +13,7 @@ export default function useLoader() {
   }
 
   return {
+    loaders,
     loaderStatus,
     toggleLoading
   }

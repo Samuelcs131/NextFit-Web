@@ -19,26 +19,26 @@
   </div>
 </template>
 <script setup lang="ts">
-import { onMounted } from 'vue'
-import { copyToClipboard } from 'quasar'
-import { LangaguesCode } from './enums/LangaguesCode.enum'
-import hljs from 'highlight.js'
+  import { onMounted } from 'vue'
+  import { copyToClipboard } from 'quasar'
+  import { LangaguesCode } from './enums/LangaguesCode.enum'
+  import hljs from 'highlight.js'
 
-interface IProps {
-  code: string
-  language?: `${LangaguesCode}`
-}
+  interface IProps {
+    code: string
+    language?: `${LangaguesCode}`
+  }
 
-const props = defineProps<IProps>()
+  const props = defineProps<IProps>()
 
-function copy() {
-  copyToClipboard(props.code)
-}
+  function copy() {
+    copyToClipboard(props.code)
+  }
 
-onMounted(() => {
-  hljs.highlightAll()
-  hljs.configure({ ignoreUnescapedHTML: true })
-})
+  onMounted(() => {
+    hljs.highlightAll()
+    hljs.configure({ ignoreUnescapedHTML: true })
+  })
 </script>
 <style lang="scss" scoped>
 .highlight-code-wrapper {

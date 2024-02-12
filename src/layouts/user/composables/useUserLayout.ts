@@ -2,7 +2,6 @@ import { Screen } from 'quasar'
 import { useUserAuth } from 'src/composables/useUserAuth'
 import ActionDispatcher from 'src/helpers/requester/Requester.helper'
 import { ref, computed } from 'vue'
-import { useRoute } from 'vue-router'
 import { userLayoutLoader } from '../enums/userLayoutLoaders.enum'
 import { fakePromise } from 'src/utils/fakePromise.util'
 
@@ -21,8 +20,6 @@ const state = ref<IState>({
 })
 
 export function useUserLayout() {
-  const route = useRoute()
-
   function toggleLeftDrawer() {
     if (Screen.width < 768) {
       state.value.menu.drawer = !state.value.menu.drawer
@@ -49,25 +46,6 @@ export function useUserLayout() {
     })
   }
 
-  function formattedBreadcrumbs() {
-    const paths = route.path
-      .split('/')
-      .slice(2)
-      .map((path) => {
-        const indexOf = route.path.indexOf(path)
-        return {
-          name: path,
-          to: route.path.substring(0, indexOf) + path,
-        }
-      })
-
-    return paths
-  }
-
-  const namePage = computed(() => route.name?.toString())
-
-  const breadcrumbs = computed(() => formattedBreadcrumbs())
-
   const typeScreen = computed(() => {
     if (Screen.width < 768) state.value.menu.mini = false
     return Screen.width <= 768 ? 'mobile' : 'desktop'
@@ -75,10 +53,7 @@ export function useUserLayout() {
 
   return {
     state,
-    namePage,
     typeScreen,
-    route,
-    breadcrumbs,
     toggleLeftDrawer,
     defineTypeMenu,
     checkILoggedIn,

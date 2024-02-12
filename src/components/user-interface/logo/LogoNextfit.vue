@@ -19,20 +19,20 @@
 </template>
 <script setup lang="ts">
 
-defineProps({
-  size: {
-    type: String,
-    required: false,
-    default: 'xl',
-  },
-  color: {
-    type: String,
-    required: false,
-    default: 'primary',
-  },
-  qClass: {
-    type: String,
-    required: false,
-  },
-})
+  defineProps({
+    size: {
+      type: String,
+      required: false,
+      default: 'xl',
+    },
+    color: {
+      type: String,
+      required: false,
+      default: 'primary',
+    },
+    qClass: {
+      type: String,
+      required: false,
+    },
+  })
 </script>

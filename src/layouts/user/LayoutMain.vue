@@ -3,8 +3,12 @@
     <q-header class="header-layout-main">
       <q-toolbar>
         <q-btn dense flat round icon="menu" @click="toggleLeftDrawer" />
-        <q-toolbar-title v-if="namePage">
-          {{ te(routerTitle[namePage]) ? $t(routerTitle[namePage]) : namePage }}
+        <q-toolbar-title v-if="route.name">
+          {{
+            te(route.name.toString())
+              ? $t(route.name.toString())
+              : route.name.toString()
+          }}
         </q-toolbar-title>
 
         <q-space />
@@ -22,7 +26,7 @@
               />
             </q-avatar>
           </q-btn>
-          <q-menu class="" v-bind="$vMenu">
+          <q-menu class="q-card--bordered" v-bind="$vMenu">
             <q-list style="min-width: 150px" dense>
               <q-item class="q-my-xs non-selectable">
                 <q-item-section>
@@ -33,8 +37,20 @@
                 </q-item-section>
               </q-item>
               <q-separator />
+              <div class="q-pa-sm">
+                <q-btn
+                  class="full-width"
+                  dense
+                  color="default"
+                  :icon="$q.fullscreen.isActive ? 'fullscreen_exit' : 'fullscreen'"
+                  @click="$q.fullscreen.toggle()"
+                  v-close-popup
+                  >{{ $t('fullscreen') }}</q-btn
+                >
+              </div>
+              <q-separator />
               <q-item clickable v-close-popup @click="logout()">
-                <q-item-section>{{ $t('buttons.exit') }}</q-item-section>
+                <q-item-section>{{ $t('exit') }}</q-item-section>
               </q-item>
             </q-list>
           </q-menu>
@@ -83,13 +99,13 @@
   import { useUserAuth } from 'src/composables/useUserAuth'
   import { onBeforeMount } from 'vue'
   import { useI18n } from 'src/boot/i18n'
-  import { routerTitle } from 'src/constants/routes/router.const'
+  import { useRoute } from 'vue-router'
 
-  const { namePage, typeScreen, state, toggleLeftDrawer, defineTypeMenu } =
-    useUserLayout()
+  const { typeScreen, state, toggleLeftDrawer, defineTypeMenu } = useUserLayout()
   const { logout } = useUserAuth()
   const userStore = useUserStore()
   const { te } = useI18n()
+  const route = useRoute()
 
   onBeforeMount(() => {
     defineTypeMenu()

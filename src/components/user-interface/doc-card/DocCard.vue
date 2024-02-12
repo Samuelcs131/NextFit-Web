@@ -42,20 +42,20 @@
   </q-card>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import HighlightCode from '../highlight-code/HighlightCode.vue'
-import { TabPanelOptions } from './enums/TabPanelOptions.enum'
+  import { ref } from 'vue'
+  import HighlightCode from '../highlight-code/HighlightCode.vue'
+  import { TabPanelOptions } from './enums/TabPanelOptions.enum'
 
-interface IProps {
-  title: string
-  template?: string
-  script?: string
-}
+  interface IProps {
+    title: string
+    template?: string
+    script?: string
+  }
 
-defineProps<IProps>()
+  defineProps<IProps>()
 
-const tab = ref<TabPanelOptions>(TabPanelOptions.template)
-const expanded = ref<boolean>(false)
+  const tab = ref<TabPanelOptions>(TabPanelOptions.template)
+  const expanded = ref<boolean>(false)
 </script>
 <style lang="scss" scoped>
 .wrapper-documentation {

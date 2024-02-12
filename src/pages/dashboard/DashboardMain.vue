@@ -22,7 +22,7 @@
   </q-page>
 </template>
 <script lang="ts" setup>
-  import IllustrativeMessage from 'src/components/user-interface/illustrative-message/IllustrativeMessage.vue'
+  // import IllustrativeMessage from 'src/components/user-interface/illustrative-message/IllustrativeMessage.vue'
   import { useUserStore } from 'src/stores/UserStore'
   import { countryDictionary } from 'src/constants/user/country.const'
 

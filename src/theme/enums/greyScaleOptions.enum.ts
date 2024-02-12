@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum greyScaleOptions {
   G100 = 'G100',
   G200 = 'G200',

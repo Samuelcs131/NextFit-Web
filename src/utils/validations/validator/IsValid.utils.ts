@@ -7,6 +7,7 @@ import {
   MustBeMinMaxCharacteres,
   MustBeStrongPassword,
   MustBeTypeInteger,
+  MustBeTypeNumeric,
   MustBeTypeText,
   MustMatchEnumOptions,
   MustNotBeEmpty,
@@ -169,22 +170,28 @@ export class IsValid {
    * @throws Se o valor não for uma data válida e `error` for verdadeiro.
    * @returns `true` se o valor for uma data válida, `false` caso contrário.
    */
-  static date(value: string | Date, options: ISOptions = {}, error?: boolean) {
-    let isValid = false
-    const separator = options.strictSeparator ? '-' : /[-/]/
-    const date = new Date(
-      typeof value === 'string' ? value.replace(separator, '-') : value
-    )
+  static date(value: string | Date | null, options: ISOptions = {}, error?: boolean) {
+    if(!value) return false
+    try {
+      let isValid = false
+      const separator = options.strictSeparator ? '-' : /[-/]/
+      const date = new Date(
+        typeof value === 'string' ? value.replace(separator, '-') : value
+      )
 
-    if (options.strict) {
-      isValid = date.toISOString() === value
-    } else {
-      isValid = date instanceof Date && !isNaN(date.getTime())
+      if (options.strict) {
+        isValid = date.toISOString() === value
+      } else {
+        isValid = date instanceof Date && !isNaN(date.getTime())
+      }
+
+      if (!isValid && error) throw new MustBeDate()
+
+      return isValid
+    } catch {
+      if (error) throw new MustBeDate()
+      return false
     }
-
-    if (!isValid && error) throw new MustBeDate()
-
-    return isValid
   }
 
   /**
@@ -256,6 +263,14 @@ export class IsValid {
     let isValid = false
     isValid = value < less
     if (!isValid && error) throw new LessThan(less)
+
+    return isValid
+  }
+
+  static isNumeric(value: number, error?: boolean): boolean {
+    let isValid = false
+    isValid = typeof value == 'number'
+    if (!isValid && error) throw new MustBeTypeNumeric()
 
     return isValid
   }

@@ -1,4 +1,6 @@
+import { t } from 'src/utils/translate/translateUtils'
+
 export const themeMode = [
-  { label: 'colors.light', value: 'light', icon: 'light_mode' },
-  { label: 'colors.dark', value: 'dark', icon: 'dark_mode' },
+  { label: t('light'), value: 'light', icon: 'light_mode' },
+  { label: t('dark'), value: 'dark', icon: 'dark_mode' },
 ]

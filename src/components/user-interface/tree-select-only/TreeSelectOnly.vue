@@ -68,61 +68,61 @@
 </template>
 
 <script setup lang="ts">
-import { onBeforeMount } from 'vue'
-import { useTreeSelect } from './composables/useTreeSelectOnly'
-import { ITreeSelectOnly } from './types/ITreeSelectOnly.type'
-import { QFieldProps, QTree } from 'quasar'
+  import { onBeforeMount } from 'vue'
+  import { useTreeSelect } from './composables/useTreeSelectOnly'
+  import { ITreeSelectOnly } from './types/ITreeSelectOnly.type'
+  import { QFieldProps, QTree } from 'quasar'
 
-interface IProp extends QFieldProps {
-  options: ITreeSelectOnly[]
-  dense?: boolean
-  optionsDense?: boolean
-  useChips?: boolean
-  loading?: boolean
-  disable?: boolean
-  modelValue: string | null
-  useInput?: boolean
-  accordion?: boolean
-  maxHeightMenu?: number
-}
+  interface IProp extends QFieldProps {
+    options: ITreeSelectOnly[]
+    dense?: boolean
+    optionsDense?: boolean
+    useChips?: boolean
+    loading?: boolean
+    disable?: boolean
+    modelValue: string | null
+    useInput?: boolean
+    accordion?: boolean
+    maxHeightMenu?: number
+  }
 
-const props = defineProps<IProp>()
+  const props = defineProps<IProp>()
 
-const {
-  state,
-  treeView,
-  isSelected,
-  expandOptions,
-  setValueInitial,
-  filterTreeSelect,
-} = useTreeSelect()
+  const {
+    state,
+    treeView,
+    isSelected,
+    expandOptions,
+    setValueInitial,
+    filterTreeSelect,
+  } = useTreeSelect()
 
-onBeforeMount(() => {
-  const { options, modelValue } = props
-  setValueInitial(modelValue, options)
-})
-
-const emit = defineEmits(['update:modelValue'])
-
-function handleSelect(id: string | null) {
-  const isNotSelect = state.value.options.notSelect.some(
-    (groupId) => groupId === id
-  )
-  handleClear()
-  if (isNotSelect || !id) return
-
-  const selected = state.value.options.canSelect.find((item) => {
-    return item.id === id
+  onBeforeMount(() => {
+    const { options, modelValue } = props
+    setValueInitial(modelValue, options)
   })
 
-  if (!selected) return
+  const emit = defineEmits(['update:modelValue'])
 
-  state.value.selected = selected
-  emit('update:modelValue', id)
-}
+  function handleSelect(id: string | null) {
+    const isNotSelect = state.value.options.notSelect.some(
+      (groupId) => groupId === id
+    )
+    handleClear()
+    if (isNotSelect || !id) return
 
-function handleClear() {
-  state.value.selected = null
-  emit('update:modelValue', null)
-}
+    const selected = state.value.options.canSelect.find((item) => {
+      return item.id === id
+    })
+
+    if (!selected) return
+
+    state.value.selected = selected
+    emit('update:modelValue', id)
+  }
+
+  function handleClear() {
+    state.value.selected = null
+    emit('update:modelValue', null)
+  }
 </script>

@@ -1,0 +1,15 @@
+export const bodyMeasurementRules = {
+  weight: { min: 1, max: 300 },
+  rightArm: { min: 1, max: 200 },
+  leftArm: { min: 1, max: 200 },
+  rightThigh: { min: 1, max: 200 },
+  leftThigh: { min: 1, max: 200 },
+  rightForearm: { min: 1, max: 200 },
+  leftForearm: { min: 1, max: 200 },
+  breastplate: { min: 1, max: 200 },
+  abdomen: { min: 1, max: 200 },
+  glute: { min: 1, max: 200 },
+  rightCalf: { min: 1, max: 200 },
+  leftCalf: { min: 1, max: 200 },
+  deltoid: { min: 1, max: 200 },
+}

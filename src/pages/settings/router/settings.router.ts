@@ -1,10 +1,8 @@
 import { RouteRecordRaw } from 'vue-router'
 
-export const settingsRouterName = 'settings'
-
 export const settingsRouter: RouteRecordRaw = {
-  path: settingsRouterName,
-  name: settingsRouterName,
-  component: () => import('pages/settings/SettingsUser.vue'),
+  path: 'settings',
+  name: 'settings',
+  component: () => import('pages/settings/SettingsPage.vue'),
   meta: { requiresAuth: true },
 }

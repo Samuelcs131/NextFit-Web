@@ -16,3 +16,7 @@ export function minRule(value: number, min: number) {
 export function positive(value: number) {
   return IsValid.positive(value) || NumberForm.positive()
 }
+
+export function isNumericRule(value: number) {
+  return IsValid.isNumeric(value) || NumberForm.number()
+}

@@ -1,9 +1,11 @@
 import { boot } from 'quasar/wrappers'
 import { createI18n } from 'vue-i18n'
 import messages from 'src/i18n'
-import { useGlobalSettings } from 'src/stores/global-settings/globalSettings.store'
+import { useLocalStorage } from 'src/composables/useLocalStorage'
+import { Languages } from 'src/i18n/enums/languages.enum'
+import { storageKeys } from 'src/enums/storage/storage.enum'
 
-const { storage } = useGlobalSettings()
+const { getLocalStorage } = useLocalStorage()
 
 export type MessageLanguages = keyof typeof messages
 export type MessageSchema = typeof messages['pt-BR']
@@ -24,7 +26,7 @@ declare module 'vue-i18n' {
 
 export default boot(({ app }) => {
   const i18n = createI18n({
-    locale: storage.language,
+    locale: getLocalStorage<Languages>(storageKeys.language),
     legacy: false,
     messages,
   })
@@ -34,7 +36,7 @@ export default boot(({ app }) => {
 })
 
 export const i18n = createI18n({
-  locale: storage.language,
+  locale: getLocalStorage<Languages>(storageKeys.language),
   globalInjection: true,
   messages,
 })

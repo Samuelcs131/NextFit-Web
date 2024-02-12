@@ -16,7 +16,7 @@
             v-bind="$vInput"
             v-model="state.email"
             :rules="formRules.email"
-            :label="$t('labels.email')"
+            :label="$t('email')"
           />
 
           <q-input
@@ -25,7 +25,7 @@
             :rules="formRules.password"
             hint=""
             :type="state.visibilityPwd ? 'password' : 'text'"
-            :label="$t('labels.password')"
+            :label="$t('password')"
           >
             <template v-slot:append>
               <q-icon
@@ -51,7 +51,7 @@
             class="q-ma-none text-body-primary no-decoration"
             to="/forgotPassword"
           >
-            {{ $t('interface.forgotPassword') }}</router-link
+            {{ $t('forgotPassword') }}</router-link
           >
         </q-card-section>
 
@@ -62,15 +62,15 @@
             type="submit"
             color="primary"
             class="full-width"
-            >{{ $t('interface.logIn') }}</q-btn
+            >{{ $t('logIn') }}</q-btn
           >
         </q-card-section>
 
         <q-card-section class="text-center q-py-none">
           <p>
-            {{ $t('placeholders.newToNextFit') }}
+            {{ $t('newToNextFit') }}
             <router-link to="/register" class="text-primary no-decoration">{{
-              $t('placeholders.createAccount')
+              $t('createAccount')
             }}</router-link>
           </p>
         </q-card-section>

@@ -1,4 +1,6 @@
+import { t } from 'src/utils/translate/translateUtils'
+
 export const stretchOptions = [
-  { label: 'placeholders.limited', value: false, icon: 'close_fullscreen' },
-  { label: 'placeholders.maximized', value: true, icon: 'open_in_full' },
+  { label: t('limited'), value: false, icon: 'close_fullscreen' },
+  { label: t('maximized'), value: true, icon: 'open_in_full' },
 ]

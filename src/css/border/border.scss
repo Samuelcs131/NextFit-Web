@@ -4,6 +4,9 @@
 .border-dashed-right {
   border-right: 1px dashed $text-disabled;
 }
+.border-default {
+  border: 1px solid var(--q-divider);
+}
 
 .circle-border {
   border-radius: 50%;
@@ -14,9 +17,13 @@
 }
 
 .border-radius-md {
-  border-radius: 16px;
+  border-radius: 16px !important;
 }
 
 .border-radius-sm {
   border-radius: 8px;
+}
+
+.border-primary {
+  border-color: $primary-opacity-30;
 }

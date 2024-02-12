@@ -1,10 +1,8 @@
 import { RouteRecordRaw } from 'vue-router'
 
-export const loginRouterName = 'login'
-
 export const loginRouter: RouteRecordRaw = {
-  path: `/${loginRouterName}`,
-  name: loginRouterName,
+  path: '/login',
+  name: 'login',
   component: () => import('pages/login/LoginPage.vue'),
   meta: { requiresWithoutAuth: true }
 }

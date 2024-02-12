@@ -10,7 +10,7 @@ const initializeVisualComponent = {
     flat: true,
   },
   menu: {
-    class: 'paper-shadow',
+    class: 'paper-shadow border-default',
   },
   primaryButton: {
     color: 'primary',

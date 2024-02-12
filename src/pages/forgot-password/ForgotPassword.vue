@@ -15,13 +15,13 @@
       <q-input
         v-model="state.email"
         v-bind="$vInput"
-        :label="$t('labels.email')"
+        :label="$t('email')"
       />
 
-      <q-button
-        visual="primary"
+      <q-btn
+        color="primary"
         class="full-width q-mt-lg"
-        :label="$t('buttons.send')"
+        :label="$t('send')"
       />
     </q-card-section>
 
@@ -42,7 +42,7 @@
 
     <q-inner-loading
       :showing="isLoading"
-      :label="$t('interface.pleaseWait')"
+      :label="$t('pleaseWait')"
       label-class="text-primary"
       label-style="font-size: 1.1em"
     />
@@ -50,10 +50,9 @@
 </template>
 
 <script lang="ts" setup>
-  import QButton from 'src/components/user-interface/button/QButton.vue'
   import LogoNextfit from 'src/components/user-interface/logo/LogoNextfit.vue'
   import useLoader from 'src/composables/useLoader'
-  import { onMounted, computed, onBeforeUnmount, ref } from 'vue'
+  import { computed, ref } from 'vue'
 
   const { loaderStatus } = useLoader()
 

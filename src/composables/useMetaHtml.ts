@@ -2,10 +2,9 @@ import { computed } from 'vue'
 import { useMeta } from 'quasar'
 import { useI18n } from 'vue-i18n'
 import { useRoute } from 'vue-router'
-import { routerTitle } from 'src/constants/routes/router.const'
 
 export function useSettingMeta() {
-  const { t } = useI18n()
+  const { t, te } = useI18n()
   const route = useRoute()
 
   function titlePage(title: string) {
@@ -19,7 +18,7 @@ export function useSettingMeta() {
   useMeta(() => {
     const name = route.name?.toString()
     return {
-      title: computed(() => name && routerTitle[name] ? t(routerTitle[name]) : '').value ,
+      title: computed(() => (name && te(name) ? t(name) : name)).value,
     }
   })
 

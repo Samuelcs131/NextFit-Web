@@ -8,7 +8,7 @@
     </q-card-section>
 
     <q-card-section class="column q-col-gutter-sm q-py-none">
-      <default-form
+      <v-form
         v-model="state.user"
         :form-fields="formFields"
         submit-btn-full-width
@@ -21,7 +21,7 @@
           <q-input
             v-bind="$vInput"
             v-model="state.user.fields.password"
-            :label="$t('labels.password')"
+            :label="$t('password')"
             class="full-width"
             :rules="formRules.password"
             :type="state.visibilityPassword ? 'password' : 'text'"
@@ -43,14 +43,14 @@
                 v-model="state.policyTerms"
                 color="primary"
                 class="text-caption"
-                :label="$t('placeholders.policyTerms')"
+                :label="$t('policyTerms')"
                 :rules="formRules.policyTerms"
                 :disable="isLoading"
               />
             </template>
           </q-field>
         </template>
-      </default-form>
+      </v-form>
     </q-card-section>
 
     <q-card-section class="q-py-none"> </q-card-section>
@@ -72,7 +72,7 @@
 
     <q-inner-loading
       :showing="isLoading"
-      :label="$t('interface.pleaseWait')"
+      :label="$t('pleaseWait')"
       label-class="text-primary"
       label-style="font-size: 1.1em"
     />
@@ -84,7 +84,7 @@
   import LogoNextfit from 'src/components/user-interface/logo/LogoNextfit.vue'
   import { redirectToApp } from 'src/utils/redirect/redirectToApp.util'
   import { onMounted, computed, onBeforeUnmount } from 'vue'
-  import DefaultForm from 'src/components/default-form/DefaultForm.vue'
+  import VForm from 'src/components/v-form/VForm.vue'
   import { formFields } from './constants/formFields.const'
   import { formRules } from './constants/formRules.const'
   import { registerLoader } from './constants/registerLoader.const'

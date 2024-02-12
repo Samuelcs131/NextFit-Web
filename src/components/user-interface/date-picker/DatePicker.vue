@@ -4,6 +4,7 @@
     v-bind="$vInput"
     @update:model-value="emitDateValue"
     :mask="propsCurrent.maskInput"
+    :rules="ruleActive ? [(v)=>requiredDate(handleValueDate(v) as string)] : []"
   >
     <template #append>
       <q-icon name="event" class="cursor-pointer q-ml-sm">
@@ -16,12 +17,7 @@
             :locale="dateLocale[storage.language as Languages]"
           >
             <div class="row items-center justify-end">
-              <q-btn
-                v-close-popup
-                :label="$t('buttons.close')"
-                color="primary"
-                flat
-              />
+              <q-btn v-close-popup :label="$t('close')" color="primary" flat />
             </div>
           </q-date>
         </q-popup-proxy>
@@ -36,12 +32,7 @@
             :mask="propsCurrent.maskDate"
           >
             <div class="row items-center justify-end">
-              <q-btn
-                v-close-popup
-                :label="$t('buttons.close')"
-                color="primary"
-                flat
-              />
+              <q-btn v-close-popup :label="$t('close')" color="primary" flat />
             </div>
           </q-time>
         </q-popup-proxy>
@@ -59,11 +50,13 @@
   import { dateLocale } from 'src/constants/date/dateLocale.const'
   import { useLocalStorage } from 'src/composables/useLocalStorage'
   import { Languages } from 'src/i18n/enums/languages.enum'
+  import { requiredDate } from 'src/utils/validations/form-rules/dateRules.util'
 
   interface IProps {
-    modelValue: string | null
+    modelValue?: string
     maskInput?: string
     maskDate?: string
+    ruleActive?: boolean
   }
 
   const props = defineProps<IProps>()
@@ -72,20 +65,22 @@
     maskDate: !props.maskDate ? 'DD/MM/YYYY HH:mm' : props.maskDate,
   }
 
-  const dateValue = ref<string | null>(props.modelValue)
+  const dateValue = ref<string | undefined>(props.modelValue)
 
   const emit = defineEmits(['update:modelValue'])
 
   const { storage } = useLocalStorage()
 
   const emitDateValue = (newDate: string | number | null) => {
-    const date =
-      typeof newDate === 'string' ? dateDefaultToISODate(newDate) : null
-    emit('update:modelValue', date)
+    if (typeof newDate === 'string') {
+      emit('update:modelValue', handleValueDate(newDate))
+    } else {
+      emit('update:modelValue', null)
+    }
   }
 
-  function defaultProps(defaultt: boolean, value: boolean) {
-    return defaultt === undefined ? defaultt : value
+  function handleValueDate(date?: string) {
+    return date?.length === 16 ? dateDefaultToISODate(date) : null
   }
 
   onMounted(() => {

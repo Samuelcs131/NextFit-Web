@@ -1,6 +1,6 @@
 import { date as QuasarDate } from 'quasar'
 import { useLocalStorage } from 'src/composables/useLocalStorage'
-import { useGlobalSettings } from 'src/stores/global-settings/globalSettings.store'
+import { t } from '../translate/translateUtils'
 
 /**
  * Converte uma data para o formato de data brasileiro com horas, minutos e segundos ("DD/MM/YYYY HH:mm:ss").
@@ -34,3 +34,40 @@ export function dateDefaultToISODate(date: string) {
 
   return adjustedDate.toISOString()
 }
+
+export function timeHumanized(seconds: number): string {
+  const tLowerCase = (key: string) => t(key).toLowerCase()
+
+  if (seconds < 0) return '-'
+
+  const hours = Math.floor(seconds / 3600)
+  const minutes = Math.floor((seconds % 3600) / 60)
+  const remainingSeconds = seconds % 60
+
+  const timeParts: string[] = []
+
+  if (hours > 0)
+    timeParts.push(
+      `${hours} ${hours === 1 ? tLowerCase('hour') : tLowerCase('hours')}`
+    )
+
+  if (minutes > 0)
+    timeParts.push(
+      `${minutes} ${
+        minutes === 1 ? tLowerCase('minute') : tLowerCase('minutes')
+      }`
+    )
+
+  if (remainingSeconds > 0)
+    timeParts.push(
+      `${remainingSeconds} ${
+        remainingSeconds === 1 ? tLowerCase('second') : tLowerCase('seconds')
+      }`
+    )
+
+  if (timeParts.length === 0) return `0 ${tLowerCase('seconds')}`
+
+  return timeParts.join(` ${tLowerCase('and')} `)
+}
+
+

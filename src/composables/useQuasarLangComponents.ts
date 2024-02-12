@@ -1,29 +1,21 @@
 import { useQuasar } from 'quasar'
-import { useI18n } from 'vue-i18n'
-
+import { t } from 'src/utils/translate/translateUtils'
 
 export default function useQuasarLangComponents() {
   const { lang } = useQuasar()
-  const { t } = useI18n()
 
   function setupLangComponents() {
-    lang.table.allRows = 'Todos'
-    lang.table.noData = t('colors.orange')
-    lang.table.noResults =  t('colors.orange')
+    lang.table.allRows = t('all')
     lang.table.pagination = pagination
     lang.table.selectedRecords = selectedRecords
-    lang.table.recordsPerPage = 'ui.RecordsPerPage'
-    lang.table.loading = 'ui.Loading'
-
-    lang.tree.noResults = 'ui.NoResults'
   }
 
   function pagination(start: number, end: number, total: number) {
-    return `${start} - ${end} ${'ui.Of'} ${total}`
+    return `${start} - ${end} ${t('of').toLocaleLowerCase()} ${total}`
   }
 
   function selectedRecords(rows: number) {
-    const plural = rows === 1 ? 'ui.SelectedItem' : 'ui.SelectedItems'
+    const plural = rows === 1 ? t('selectedItem') : t('selectedItems')
     return `${rows} ${plural}`
   }
 

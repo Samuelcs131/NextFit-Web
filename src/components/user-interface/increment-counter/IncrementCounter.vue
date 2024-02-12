@@ -1,16 +1,16 @@
 <template>
   <span>
     <span>
-      <q-button
-        visual="default"
+      <q-btn
+        color="default"
         icon="remove"
         round
         size="xs"
         @click="handleUpdate(false)"
       />
       <span class="q-mx-sm">{{ incrementValue }}</span>
-      <q-button
-        visual="default"
+      <q-btn
+        color="default"
         icon="add"
         round
         size="xs"
@@ -23,23 +23,22 @@
   </span>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-import QButton from '../button/QButton.vue'
+  import { ref } from 'vue'
 
-interface IProps {
-  modelValue: number
-  label?: string
-}
+  interface IProps {
+    modelValue: number
+    label?: string
+  }
 
-const props = defineProps<IProps>()
-const incrementValue = ref<number>(props.modelValue)
-const emit = defineEmits(['update:modelValue'])
+  const props = defineProps<IProps>()
+  const incrementValue = ref<number>(props.modelValue)
+  const emit = defineEmits(['update:modelValue'])
 
-function handleUpdate(increment: boolean) {
-  incrementValue.value = increment
-    ? incrementValue.value + 1
-    : incrementValue.value - 1
+  function handleUpdate(increment: boolean) {
+    incrementValue.value = increment
+      ? incrementValue.value + 1
+      : incrementValue.value - 1
 
-  emit('update:modelValue', incrementValue)
-}
+    emit('update:modelValue', incrementValue)
+  }
 </script>

@@ -7,12 +7,12 @@
     :class="`${visualClass()} ${props.class}`"
   >
     <slot></slot>
+    <q-tooltip v-if="tooltip">{{ tooltip }}</q-tooltip>
   </q-btn>
 </template>
 <script setup lang="ts">
   import { TypeButton } from './enum/TypeButton.enum'
   import { QBtnProps } from 'quasar'
-import ButtonPimba from 'src/components/v-table/ButtonPimba.vue'
   import { removeFalsey } from 'src/utils/array/removeFalsey.utils'
 
   interface IProps extends QBtnProps {
@@ -23,6 +23,7 @@ import ButtonPimba from 'src/components/v-table/ButtonPimba.vue'
     unelevated?: boolean
     flat?: boolean
     class?: string
+    tooltip?: string
   }
 
   const props = defineProps<IProps>()

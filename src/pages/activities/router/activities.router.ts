@@ -1,10 +1,19 @@
 import { RouteRecordRaw } from 'vue-router'
 
-export const acitivitiesRouterName = 'activities'
-
-export const acitivitiesRouter: RouteRecordRaw = {
-  path: acitivitiesRouterName,
-  name: acitivitiesRouterName,
-  component: () => import('pages/activities/ActivitiesPage.vue'),
-  meta: { requiresAuth: true }
+export const activitiesRouter: RouteRecordRaw = {
+  path: 'activities',
+  meta: { requiresAuth: true },
+  children: [
+    {
+      path: '',
+      name: 'activity',
+      component: () => import('pages/activities/ActivitiesPage.vue'),
+    },
+    {
+      path: 'edit/:id?',
+      name: 'editActivity',
+      component: () =>
+        import('pages/activities/components/EditActivity.vue'),
+    },
+  ],
 }

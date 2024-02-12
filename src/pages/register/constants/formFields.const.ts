@@ -1,4 +1,4 @@
-import { IDefaultFormField } from 'src/components/default-form/types/IDefaultFormField.type'
+import { IVFormField } from 'src/components/v-form/types/IVFormField.type'
 import { countryOptions } from 'src/constants/user/country.const'
 import { userEntityRoles } from 'src/constants/user/entityRoles.const'
 import { sexOptions } from 'src/constants/user/sex.const'
@@ -14,11 +14,11 @@ import {
 
 const { name, lastName, height, age } = userEntityRoles
 
-export const formFields: IDefaultFormField[] = [
+export const formFields: IVFormField[] = [
   {
     columnSize: 12,
     fieldName: 'name',
-    label: 'labels.name',
+    label: 'name',
     type: 'string',
     rules: [
       requiredRule,
@@ -29,7 +29,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'lastName',
-    label: 'labels.surName',
+    label: 'surName',
     type: 'string',
     rules: [
       requiredRule,
@@ -40,7 +40,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'sex',
-    label: 'labels.sex',
+    label: 'sex',
     type: 'options',
     rules: [requiredRule],
     options: sexOptions,
@@ -51,7 +51,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'height',
-    label: 'magnitudes.height',
+    label: 'height',
     type: 'number',
     rules: [
       requiredRule,
@@ -62,7 +62,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'age',
-    label: 'labels.age',
+    label: 'age',
     type: 'number',
     rules: [
       requiredRule,
@@ -73,7 +73,7 @@ export const formFields: IDefaultFormField[] = [
   {
     columnSize: 12,
     fieldName: 'country',
-    label: 'labels.country',
+    label: 'country',
     type: 'options',
     rules: [requiredRule],
     options: countryOptions,
