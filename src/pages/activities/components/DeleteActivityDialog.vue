@@ -97,7 +97,4 @@
     closeDialog(deleteActivityDialog)
     clearDataDialog(deleteActivityDialog)
   }
-
-
-  console.log('CREATE')
 </script>

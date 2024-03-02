@@ -2,13 +2,9 @@ import { date as QuasarDate } from 'quasar'
 import { useLocalStorage } from 'src/composables/useLocalStorage'
 import { t } from '../translate/translateUtils'
 
-/**
- * Converte uma data para o formato de data brasileiro com horas, minutos e segundos ("DD/MM/YYYY HH:mm:ss").
- * @param isoDate - A data em formato ISO a ser convertida.
- * @returns A data convertida para o formato brasileiro com horas, minutos e segundos.
- * @example
- * isoDateToBRDate("2022-04-19T10:30:00.000Z"); // '19/04/2022 07:30:00'
- */
+interface IDateToFormatDefaultOptions {
+  notHour: boolean
+}
 
 export function dateLocaleToString(
   date: string | number | Date,
@@ -20,19 +16,24 @@ export function dateLocaleToString(
   return Intl.DateTimeFormat(storage.value.language, options).format(dateFormet)
 }
 
-export function dateToFormatDefault(date: string | number | Date) {
-  return QuasarDate.formatDate(date, 'DD/MM/YYYY HH:MM')
+export function dateToFormatDefault(date: string | number | Date, options?: IDateToFormatDefaultOptions) {
+  return QuasarDate.formatDate(date, `DD/MM/YYYY ${options?.notHour ? '' : 'HH:MM' }`)
 }
 
-export function dateDefaultToISODate(date: string) {
+export function dateDefaultToISODate(
+  date: string,
+  options?: { resetHour: boolean }
+) {
   const [dateVal, timeVal] = date.split(' ')
 
   const [day, month, year] = dateVal.split('/')
+
+  if (options?.resetHour)
+    return new Date(`${year}-${month}-${day} ${0}:${0}`).toISOString()
+
   const [hours, minutes] = timeVal.split(':')
 
-  const adjustedDate = new Date(`${year}-${month}-${day} ${hours}:${minutes}`)
-
-  return adjustedDate.toISOString()
+  return new Date(`${year}-${month}-${day} ${hours}:${minutes}`).toISOString()
 }
 
 export function timeHumanized(seconds: number): string {
@@ -70,4 +71,10 @@ export function timeHumanized(seconds: number): string {
   return timeParts.join(` ${tLowerCase('and')} `)
 }
 
+export function getFirstAndLastDayOfMonth() {
+  const today = new Date()
+  const firstDay = new Date(today.getFullYear(), today.getMonth(), 1)
+  const lastDay = new Date(today.getFullYear(), today.getMonth() + 1, 0)
 
+  return { firstDay, lastDay }
+}

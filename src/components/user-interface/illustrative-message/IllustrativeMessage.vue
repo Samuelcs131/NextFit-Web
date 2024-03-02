@@ -6,6 +6,7 @@
       :src="illustrativeMessageImage[illustration]"
       :width="width || '120px'"
       :height="height"
+      fit="contain"
     />
 
     <span class="q-mt-sm text-bold text-subtitle1 text-grey">

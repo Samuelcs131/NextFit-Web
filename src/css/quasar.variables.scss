@@ -1,6 +1,7 @@
 // DEFAULT
 $dark-page: var(--q-default);
 $dark-page-rgb: var(--q-default-rgb);
+$dark-page-opacity-50: rgba($dark-page-rgb, 0.5);
 $dark-page-opacity-70: rgba($dark-page-rgb, 0.7);
 
 // PAPER

@@ -12,7 +12,7 @@
     <div class="container-card gap-sm">
       <q-card
         bordered
-        class="my-card"
+        v-bind="$vCard"
         v-for="(training, idx) in state.listTraining.items"
         :key="idx"
         style="display: flex; flex-direction: column"

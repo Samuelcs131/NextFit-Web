@@ -113,6 +113,7 @@ export default {
   kettlebell: 'Kettlebell',
   balancim: 'Equilíbrio',
   category: 'Categoria',
+  categories: 'Categorias',
   illustrativeVideo: 'Video ilustrativo',
   alert: 'Alerta',
   dynamicMenu: 'Menu dinâmico',
@@ -205,4 +206,8 @@ export default {
   newBodyMeasurement: 'Nova medição corporal',
   editBodyMeasurement: 'Editar medição corporal',
   allMeasurementsAreInCentimeters: 'Todas as medidas são em centímetros',
+  startDate: 'Data inicial',
+  endDate: 'Data final',
+  repetitionandWeightAnalysis: 'Análise de Repetições e Pesos',
+  exerciseQuantity: 'Quantidade de exercicios'
 }

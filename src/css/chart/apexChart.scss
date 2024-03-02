@@ -1,0 +1,67 @@
+.apexcharts-tooltip {
+  backdrop-filter: blur(6px);
+  background-color: $dark-page-opacity-70 !important; // rgba(22, 28, 36, 0.8) !important;
+  color: $text-primary !important;
+  box-shadow: $paper-shadow !important;
+  border-radius: 10px !important;
+  border: none !important;
+}
+
+.apexcharts-xaxistooltip {
+  background-color: $dark-page-opacity-70 !important; //rgba(22, 28, 36, 0.8) !important;
+  border-color: transparent !important;
+  color: $text-primary !important;
+  box-shadow: $paper-shadow;
+  border-radius: 10px !important;
+}
+
+.apexcharts-menu{
+  background-color: $dark-page-opacity-70 !important; //rgba(22, 28, 36, 0.8) !important;
+  color: $text-primary !important;
+  backdrop-filter: blur(6px);
+  border: none !important;
+
+}
+
+.apexcharts-xaxistooltip-bottom {
+  &::before,
+  &::after {
+    border-bottom-color: $dark-page-opacity-70 !important; //rgba(22, 28, 36, 0.8) !important;
+  }
+}
+.apexcharts-title-text {
+  fill: $text-primary;
+}
+
+.apexcharts-subtitle-text {
+  fill: $text-disabled;
+}
+
+.apexcharts-yaxis {
+  text {
+    fill: $text-disabled;
+  }
+}
+.apexcharts-xaxis-texts-g {
+  text {
+    fill: $text-disabled;
+  }
+}
+.apexcharts-xaxis {
+  line {
+    stroke: $text-disabled;
+  }
+}
+.apexcharts-xaxis-tick {
+  stroke: $text-disabled;
+}
+.apexcharts-legend-text {
+  color: $text-primary !important;
+}
+
+.apexcharts-canvas .apexcharts-tooltip-title {
+  font-weight: bold;
+  background-color: $dark-page-opacity-50 !important;
+  color: $text-primary !important;
+  border-bottom: none !important;
+}

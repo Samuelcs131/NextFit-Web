@@ -3,7 +3,7 @@ import { IBodyMeasurementDto } from '../dto/IBodyMeasurement.dto'
 export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cb4',
-    date: '2024-02-10T20:34:23.101Z',
+    date: '2024-01-05T20:34:23.101Z',
     abdomen: 17,
     breastplate: 9,
     deltoid: 10,
@@ -20,7 +20,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cb5',
-    date: '2024-02-11T20:34:23.101Z',
+    date: '2024-01-10T20:34:23.101Z',
     abdomen: 11,
     breastplate: 6,
     deltoid: 23,
@@ -37,7 +37,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cb6',
-    date: '2024-02-12T20:34:23.101Z',
+    date: '2024-01-25T20:34:23.101Z',
     abdomen: 12,
     breastplate: 12,
     deltoid: 18,
@@ -54,7 +54,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cb7',
-    date: '2024-02-13T20:34:23.101Z',
+    date: '2024-02-01T20:34:23.101Z',
     abdomen: 14,
     breastplate: 8,
     deltoid: 11,
@@ -71,7 +71,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cb8',
-    date: '2024-02-14T20:34:23.101Z',
+    date: '2024-02-10T20:34:23.101Z',
     abdomen: 7,
     breastplate: 7,
     deltoid: 10,
@@ -88,7 +88,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cb9',
-    date: '2024-02-15T20:34:23.101Z',
+    date: '2024-02-25T20:34:23.101Z',
     abdomen: 15,
     breastplate: 16,
     deltoid: 12,
@@ -105,7 +105,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cba',
-    date: '2024-02-16T20:34:23.101Z',
+    date: '2024-03-01T20:34:23.101Z',
     abdomen: 19,
     breastplate: 25,
     deltoid: 19,
@@ -122,7 +122,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cbb',
-    date: '2024-02-17T20:34:23.101Z',
+    date: '2024-03-10T20:34:23.101Z',
     abdomen: 24,
     breastplate: 10,
     deltoid: 22,
@@ -139,7 +139,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cbc',
-    date: '2024-02-18T20:34:23.101Z',
+    date: '2024-03-25T20:34:23.101Z',
     abdomen: 21,
     breastplate: 6,
     deltoid: 23,
@@ -156,7 +156,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cbd',
-    date: '2024-02-19T20:34:23.101Z',
+    date: '2024-04-01T20:34:23.101Z',
     abdomen: 19,
     breastplate: 9,
     deltoid: 9,
@@ -173,7 +173,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cbe',
-    date: '2024-02-20T20:34:23.101Z',
+    date: '2024-04-10T20:34:23.101Z',
     abdomen: 6,
     breastplate: 14,
     deltoid: 7,
@@ -190,7 +190,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cbf',
-    date: '2024-02-21T20:34:23.101Z',
+    date: '2024-04-25T20:34:23.101Z',
     abdomen: 12,
     breastplate: 8,
     deltoid: 11,
@@ -207,7 +207,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cc0',
-    date: '2024-02-22T20:34:23.101Z',
+    date: '2024-05-01T20:34:23.101Z',
     abdomen: 19,
     breastplate: 11,
     deltoid: 13,
@@ -224,7 +224,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cc1',
-    date: '2024-02-23T20:34:23.101Z',
+    date: '2024-05-10T20:34:23.101Z',
     abdomen: 16,
     breastplate: 12,
     deltoid: 21,
@@ -241,7 +241,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cc2',
-    date: '2024-02-24T20:34:23.101Z',
+    date: '2024-05-25T20:34:23.101Z',
     abdomen: 8,
     breastplate: 23,
     deltoid: 6,
@@ -258,7 +258,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cc3',
-    date: '2024-02-25T20:34:23.101Z',
+    date: '2024-06-01T20:34:23.101Z',
     abdomen: 14,
     breastplate: 13,
     deltoid: 10,
@@ -275,7 +275,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cc4',
-    date: '2024-02-26T20:34:23.101Z',
+    date: '2024-06-10T20:34:23.101Z',
     abdomen: 7,
     breastplate: 20,
     deltoid: 14,
@@ -292,7 +292,7 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
   },
   {
     id: 'a5be2df8-99bc-485b-998b-37082ed14cc5',
-    date: '2024-02-27T20:34:23.101Z',
+    date: '2024-06-25T20:34:23.101Z',
     abdomen: 18,
     breastplate: 11,
     deltoid: 14,
@@ -306,40 +306,5 @@ export const getAllBodyMeasurement: IBodyMeasurementDto[] = [
     rightForearm: 24,
     rightThigh: 24,
     weight: 17,
-  },
-  {
-    id: 'a5be2df8-99bc-485b-998b-37082ed14cc6',
-    date: '2024-02-28T20:34:23.101Z',
-    abdomen: 12,
-    breastplate: 11,
-    deltoid: 16,
-    glute: 14,
-
-    leftArm: 7,
-    leftCalf: 14,
-    leftForearm: 15,
-    leftThigh: 8,
-    rightArm: 8,
-    rightCalf: 10,
-    rightForearm: 23,
-    rightThigh: 13,
-    weight: 19,
-  },
-  {
-    id: 'a5be2df8-99bc-485b-998b-37082ed14cc7',
-    date: '2024-02-29T20:34:23.101Z',
-    abdomen: 16,
-    breastplate: 24,
-    deltoid: 8,
-    glute: 8,
-    leftArm: 17,
-    leftCalf: 22,
-    leftForearm: 23,
-    leftThigh: 20,
-    rightArm: 14,
-    rightCalf: 14,
-    rightForearm: 8,
-    rightThigh: 9,
-    weight: 14,
-  },
+  }
 ]

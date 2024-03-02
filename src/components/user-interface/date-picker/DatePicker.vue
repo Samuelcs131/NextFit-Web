@@ -53,7 +53,7 @@
   import { requiredDate } from 'src/utils/validations/form-rules/dateRules.util'
 
   interface IProps {
-    modelValue?: string
+    modelValue?: string | null
     maskInput?: string
     maskDate?: string
     ruleActive?: boolean
@@ -65,7 +65,7 @@
     maskDate: !props.maskDate ? 'DD/MM/YYYY HH:mm' : props.maskDate,
   }
 
-  const dateValue = ref<string | undefined>(props.modelValue)
+  const dateValue = ref<string | undefined | null>(props.modelValue)
 
   const emit = defineEmits(['update:modelValue'])
 

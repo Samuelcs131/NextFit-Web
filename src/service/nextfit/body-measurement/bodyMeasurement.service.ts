@@ -26,6 +26,44 @@ export class BodyMeasurementService {
       status: response.status,
     }
   }
+  static async getByRangeDate(
+    startDate: string | null,
+    endDate: string | null
+  ): Promise<IResponseAPI<IBodyMeasurement[], any>> {
+    if (!startDate || !endDate) {
+      const data = getAllBodyMeasurement
+
+      await fakePromise(2000)
+
+      const bodyMeasurements: IBodyMeasurement[] = data.map((bm) => {
+        return { ...bm, id: GeneratorId.create(bm.id) }
+      })
+
+      return {
+        data: bodyMeasurements,
+        status: {},
+      }
+    }
+
+    const data = getAllBodyMeasurement.filter((bm) => {
+      const date = new Date(bm.date)
+      const isRangeDate =
+        date >= new Date(startDate) && date <= new Date(endDate)
+      return isRangeDate
+    })
+
+    await fakePromise(2000)
+
+    const bodyMeasurements: IBodyMeasurement[] = data.map((bm) => {
+      return { ...bm, id: GeneratorId.create(bm.id) }
+    })
+
+    return {
+      data: bodyMeasurements,
+      status: {},
+    }
+  }
+
   static async getById(
     id: string
   ): Promise<IResponseAPI<IBodyMeasurement, any>> {
